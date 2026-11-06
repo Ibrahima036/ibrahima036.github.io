@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ibrahima, développeur web</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Ibrahima, développeur web full-stack basé à Conakry : applications métier, outils internes et sites sur mesure.">
+<!--
+  PORTFOLIO — à personnaliser
+  Tout le texte est en français, directement dans ce fichier. Remplacez :
+    • le nom « Ibrahima », le métier, la ville et la prononciation (section #accueil)
+    • l'adresse e-mail : cherchez « ibrahima@example.com » (3 occurrences : bouton, grand lien, formulaire)
+    • les liens GitHub / LinkedIn (en-tête et pied de page)
+    • les projets marqués « Exemple » (section #projets) et le parcours (section #parcours)
+  Fichiers optionnels, à déposer à côté de ce fichier :
+    • assets/photo.jpg  → remplace le visuel génératif du haut de page (affichée en noir et blanc)
+    • assets/cv.pdf     → cible du bouton « Télécharger mon CV »
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Monoton&display=swap">
+<style>
+/* Layout : une colonne de 72rem, alternance texte à gauche / objet à droite, grand nom en lettres rayées comme signature. */
+:root {
+  --bg: #1a1918;
+  --surface: #232120;
+  --line: #34312e;
+  --fg: #f3f1ee;
+  --muted: #b3aea8;
+  --faint: #7c7772;
+  --accent: #ee8d5e;
+  --on-fg: #1a1918;
+  --font-display: "Bricolage Grotesque", "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-name: "Monoton", "Bricolage Grotesque", ui-sans-serif, sans-serif;
+  --radius: 999px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f5f3ef; --surface: #ebe7e1; --line: #d8d2ca; --fg: #1b1a18;
+    --muted: #57524c; --faint: #8a847d; --accent: #bb5326; --on-fg: #f5f3ef;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f5f3ef; --surface: #ebe7e1; --line: #d8d2ca; --fg: #1b1a18;
+  --muted: #57524c; --faint: #8a847d; --accent: #bb5326; --on-fg: #f5f3ef;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 500; margin: 0; text-wrap: balance; }
+h2 { font-size: clamp(1.8rem, 1.4rem + 1.4vw, 2.3rem); letter-spacing: -0.012em; line-height: 1.1; }
+h3 { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.75rem); letter-spacing: -0.012em; line-height: 1.1; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.accent { color: var(--accent); }
+.mono { font-family: var(--font-mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.wrap {
+  width: 100%;
+  max-width: calc(72rem + 2 * max(16px, env(safe-area-inset-left, 0px)));
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
+.section-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.lede { color: var(--muted); margin-top: .5rem; max-width: 46ch; }
+
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; gap: .55rem;
+  min-height: 46px; padding: .65rem 1.3rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: transparent; color: var(--fg);
+  font: 500 15px/1 var(--font-body);
+  text-decoration: none; cursor: pointer;
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.btn:hover { border-color: var(--faint); }
+.btn:active { transform: translateY(1px); }
+.btn-solid { background: var(--fg); color: var(--on-fg); border-color: var(--fg); }
+.btn-solid:hover { background: var(--muted); border-color: var(--muted); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.icon-btn {
+  display: inline-grid; place-items: center; width: 44px; height: 44px;
+  border-radius: 50%; border: 1px solid var(--line); background: transparent; color: var(--fg);
+  cursor: pointer; transition: border-color .2s, background .2s;
+}
+.icon-btn:hover { border-color: var(--faint); background: var(--surface); }
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* En-tête */
+.site-header { padding-block: 1.1rem; }
+.site-header .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; }
+.nav { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 15px; font-weight: 500; transition: color .2s; }
+.nav a:hover { color: var(--fg); }
+.logo {
+  font-family: var(--font-display); font-weight: 600; font-size: 30px; line-height: 1; text-decoration: none;
+  color: var(--fg); text-shadow: 2px 2px 0 var(--accent); letter-spacing: -0.04em; padding-inline: .1em;
+}
+.header-tools { display: flex; align-items: center; justify-content: flex-end; gap: .5rem; }
+.social { display: inline-grid; place-items: center; width: 40px; height: 40px; color: var(--fg); opacity: .85; transition: opacity .2s; }
+.social:hover { opacity: 1; }
+.social svg { width: 21px; height: 21px; }
+.theme-toggle {
+  display: inline-flex; align-items: center; gap: .45rem; height: 40px; padding: 0 .9rem; margin-left: .3rem;
+  border: 1px solid var(--line); border-radius: var(--radius); background: transparent; color: var(--fg);
+  font: 500 14px var(--font-body); cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--faint); }
+.theme-toggle svg { width: 16px; height: 16px; }
+
+/* Accueil */
+.hero { padding-block: clamp(1.5rem, 1rem + 3vw, 3rem) 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); align-items: center; gap: 2rem; }
+.hero h1 { font-size: clamp(2.4rem, 1.8rem + 2.4vw, 3.4rem); letter-spacing: -0.025em; line-height: 1.04; }
+.hero h1 .sub { display: block; font-size: .52em; letter-spacing: -0.015em; line-height: 1.25; margin-top: .5rem; }
+.origin { color: var(--muted); margin-top: 1.6rem; }
+.origin strong { color: var(--fg); font-weight: 500; }
+.flag-gn {
+  display: inline-block; width: 15px; height: 15px; border-radius: 50%; vertical-align: -2px; margin-inline: .15em .3em;
+  background: linear-gradient(90deg, #ce1126 0 33.3%, #fcd116 33.3% 66.6%, #009460 66.6%);
+}
+.hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; align-items: center; }
+.copied { font-size: 14px; color: var(--accent); }
+.hero-art {
+  position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 55% 50%, #000 48%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 72% at 55% 50%, #000 48%, transparent 100%);
+}
+.hero-art canvas, .hero-art img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-art img { object-fit: cover; filter: grayscale(1) contrast(1.15); }
+
+.bigname {
+  font-family: var(--font-name); font-weight: 400; line-height: 1; white-space: nowrap;
+  font-size: 15vw; margin: clamp(1.5rem, 3vw, 2.5rem) 0 0; color: var(--fg);
+  text-align: center; letter-spacing: 0; user-select: none; text-transform: uppercase; overflow: hidden;
+}
+.bigname span { display: inline-block; }
+.say { display: flex; justify-content: flex-end; gap: .7rem; font-size: 14px; color: var(--faint); margin-top: .6rem; }
+.say .mono { color: var(--fg); }
+
+/* Projets */
+.pill-link {
+  display: inline-flex; align-items: center; gap: .7rem; padding: .3rem .35rem .3rem 1.1rem; min-height: 46px;
+  border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; font-weight: 500; font-size: 15px;
+}
+.pill-link span.arrow { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--fg); color: var(--on-fg); }
+.pill-link svg { width: 16px; height: 16px; }
+.projects { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 4rem); align-items: start; }
+.stage-col { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+.stage { position: relative; width: 100%; aspect-ratio: 16 / 10; margin-bottom: 30px; touch-action: pan-y; }
+.p-card {
+  position: absolute; inset: 0; border: 1px solid var(--line); border-radius: 26px; background: var(--bg);
+  overflow: hidden; transition: transform .5s cubic-bezier(.2, .7, .2, 1), opacity .4s;
+  display: flex; flex-direction: column;
+}
+.p-card[data-pos="0"] { z-index: 3; transform: none; }
+.p-card[data-pos="1"] { z-index: 2; transform: translateY(14px) scale(.955); }
+.p-card[data-pos="2"] { z-index: 1; transform: translateY(28px) scale(.91); }
+.p-card[data-pos="1"] > *, .p-card[data-pos="2"] > * { visibility: hidden; }
+.p-card[data-pos="hidden"] { opacity: 0; transform: translateY(28px) scale(.91); pointer-events: none; }
+.p-card-top { display: flex; align-items: center; gap: .55rem; padding: 1.1rem 1.4rem; font: 500 14px var(--font-display); }
+.p-card-body { flex: 1; display: grid; place-items: center; padding: 0 1.4rem 1.6rem; min-height: 0; }
+.p-mark { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font: 600 12px var(--font-mono); color: var(--bg); background: var(--accent); }
+.stage-nav { display: flex; gap: .9rem; }
+
+/* Visuels des projets */
+.mini-card {
+  width: min(78%, 340px); aspect-ratio: 85.6 / 47; border-radius: 10px; background: var(--fg); color: var(--on-fg);
+  display: grid; grid-template-columns: 26% 1fr 22%; gap: 5%; padding: 5% 6%; align-items: center;
+  box-shadow: 0 18px 40px -18px #000; position: relative; overflow: hidden;
+}
+.mini-card::before { content: ""; position: absolute; inset: 0 0 auto; height: 14%; background: var(--accent); }
+.mini-card .ph { aspect-ratio: 3 / 4; border-radius: 4px; background: var(--faint); opacity: .55; margin-top: 12%; }
+.mini-card .ln { display: grid; gap: 7px; margin-top: 12%; }
+.mini-card .ln i { display: block; height: 6px; border-radius: 3px; background: currentColor; opacity: .22; }
+.mini-card .ln i:first-child { opacity: .75; width: 80%; height: 8px; }
+.mini-card .ln i:nth-child(3) { width: 60%; }
+.mini-card .qr { aspect-ratio: 1; margin-top: 12%; background:
+  repeating-conic-gradient(currentColor 0 25%, transparent 0 50%) 0 0 / 28% 28%; opacity: .8; border-radius: 2px; }
+.mini-dash { width: 84%; display: grid; grid-template-columns: 1fr 2.4fr; gap: 12px; height: 72%; }
+.mini-dash .side { border-radius: 10px; background: var(--surface); display: grid; align-content: start; gap: 9px; padding: 14px 12px; }
+.mini-dash .side i { display: block; height: 7px; border-radius: 4px; background: var(--line); }
+.mini-dash .side i:first-child { background: var(--accent); width: 70%; }
+.mini-dash .main { border-radius: 10px; background: var(--surface); display: flex; align-items: flex-end; gap: 6%; padding: 16px 16px 14px; }
+.mini-dash .main b { flex: 1; border-radius: 4px 4px 0 0; background: var(--line); }
+.mini-dash .main b:nth-child(4) { background: var(--accent); }
+.mini-site { width: 84%; text-align: left; display: grid; gap: .7rem; }
+.mini-site .t { font: 500 clamp(1.3rem, 1rem + 1.5vw, 2rem)/1.05 var(--font-display); letter-spacing: -0.02em; }
+.mini-site .t em { font-style: normal; color: var(--accent); }
+.mini-site .row { display: flex; gap: .5rem; }
+.mini-site .row i { display: block; height: 28px; flex: 1; border-radius: 8px; background: var(--surface); }
+.mini-site .row i:first-child { flex: .6; background: var(--fg); }
+
+.p-info { display: grid; gap: 1.2rem; min-width: 0; }
+.p-hint { color: var(--muted); font-size: 1.2rem; line-height: 1.35; }
+.p-title { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; }
+.p-title .p-mark { width: 36px; height: 36px; border-radius: 9px; font-size: 15px; }
+.badge { font: 500 12px var(--font-mono); padding: .2rem .55rem; border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted); }
+.p-desc { color: var(--fg); max-width: 44ch; }
+.p-meta { display: flex; gap: 1.3rem; flex-wrap: wrap; font-size: 14px; color: var(--faint); }
+.p-meta b { color: var(--fg); font-weight: 500; margin-left: .4rem; }
+.p-stack { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem 1.5rem; font-size: 15px; }
+.p-stack li { display: flex; align-items: center; gap: .6rem; }
+.p-stack li::before { content: ""; width: 7px; height: 7px; border: 1.5px solid var(--faint); transform: rotate(45deg); flex: none; }
+.p-links { display: flex; gap: .65rem; flex-wrap: wrap; }
+.p-info.swap { animation: fadein .45s ease both; }
+@keyframes fadein { from { opacity: .2; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Services */
+.services { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 5rem); }
+.svc-aside { position: sticky; top: 0; height: 100vh; max-height: 46rem; display: flex; flex-direction: column; justify-content: flex-end; padding-block: 2rem; }
+.svc-tabs { list-style: none; margin: 0; padding: 0; display: flex; gap: 2.2rem; flex-wrap: wrap; }
+.svc-tabs a { display: flex; align-items: baseline; gap: .55rem; text-decoration: none; color: var(--faint); font: 500 1.4rem var(--font-display); transition: color .25s; }
+.svc-tabs .n { font: 400 2.1rem var(--font-mono); }
+.svc-tabs a.on { color: var(--fg); }
+.svc-tabs a.on .n { color: var(--accent); }
+.svc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(6rem, 20vh, 14rem); padding-block: clamp(2rem, 18vh, 12rem); }
+.svc { display: grid; gap: 1.1rem; scroll-margin-top: 4rem; }
+.svc .n { font: 400 3.4rem/1 var(--font-mono); color: var(--accent); }
+.svc h3 { font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.4rem); }
+.svc .pain { color: var(--fg); }
+.svc .how { color: var(--muted); font-size: 16px; }
+.svc .get { font-size: 15px; color: var(--muted); margin-top: .6rem; }
+.svc ul.deliver { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.svc ul.deliver li { padding-block: .8rem; border-bottom: 1px solid var(--line); font-size: 16px; }
+
+/* Outils & parcours */
+.rows { border-top: 1px solid var(--line); }
+.tool-row { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 1rem 2rem; padding-block: 1.3rem; border-bottom: 1px solid var(--line); align-items: baseline; }
+.tool-row .k { color: var(--muted); font-size: 15px; }
+.tool-row ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .55rem 1.6rem; }
+.tool-row li { display: inline-flex; align-items: baseline; gap: .45rem; }
+.tool-row li .ab { font: 500 11px var(--font-mono); color: var(--faint); min-width: 2.2em; }
+.sub-block { margin-top: clamp(4rem, 8vw, 6rem); }
+.sub-block h2 { margin-bottom: 2rem; }
+.job { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: .5rem 2.5rem; padding-block: 1.8rem; border-bottom: 1px solid var(--line); }
+.job .org { font: 500 1.4rem/1.15 var(--font-display); color: var(--accent); }
+.job .role { font-weight: 500; }
+.job .what { color: var(--muted); font-size: 16px; margin-top: .45rem; max-width: 56ch; }
+.job .when { color: var(--faint); font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Contact */
+.contact p.lede { max-width: 52ch; }
+.big-mail {
+  display: inline-block; margin-top: 2.5rem; font: 500 clamp(1.7rem, 0.6rem + 5vw, 4.4rem)/1.1 var(--font-display);
+  letter-spacing: -0.035em; text-decoration: underline; text-decoration-color: var(--accent);
+  text-decoration-thickness: .06em; text-underline-offset: .12em; overflow-wrap: anywhere; max-width: 100%;
+}
+.big-mail:hover { color: var(--accent); }
+.req {
+  margin-top: 3rem; margin-left: auto; width: min(100%, 39rem);
+  font: 400 15px/1.6 var(--font-mono); color: var(--muted);
+}
+.req .line { display: block; }
+.req .verb { color: var(--accent); font-weight: 500; margin-right: .6rem; }
+.req .path { color: var(--fg); }
+.req .top { font-size: 17px; margin-bottom: .6rem; }
+.req .body { padding-left: 1.6rem; display: grid; gap: 1.6rem; margin-block: .5rem; }
+.req .key { color: var(--fg); }
+.req fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.req legend { padding: 0; margin-bottom: .45rem; color: var(--fg); }
+.req .opt { display: flex; gap: .8rem; align-items: baseline; flex-wrap: wrap; cursor: pointer; }
+.req .opt input { position: absolute; opacity: 0; pointer-events: none; }
+.req .opt .v { color: var(--fg); text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: color .2s; }
+.req .opt input:checked + .v { color: var(--accent); text-decoration-color: var(--accent); }
+.req .opt input:focus-visible + .v { outline: 2px solid var(--accent); outline-offset: 3px; }
+.req .opt .c { color: var(--faint); }
+.field { display: grid; gap: .5rem; }
+.field label { color: var(--fg); }
+.field .in { display: flex; align-items: flex-end; gap: .2rem; }
+.field .q { color: var(--fg); }
+.req input[type="text"], .req input[type="email"], .req textarea {
+  flex: 1; min-width: 0; background: transparent; border: 0; border-bottom: 1px solid var(--line);
+  color: var(--fg); font: inherit; padding: .5rem .2rem .6rem; resize: vertical; transition: border-color .2s;
+}
+.req textarea { min-height: 5.5rem; }
+.req input::placeholder, .req textarea::placeholder { color: var(--faint); }
+.req input:focus, .req textarea:focus { outline: none; border-color: var(--accent); }
+.req .send { margin-top: 1.4rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+.req .err { color: var(--accent); font-size: 14px; }
+.resp { margin-top: 1.4rem; padding: 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+.resp .status { color: var(--fg); }
+.resp .status b { color: var(--accent); font-weight: 500; }
+.resp p { margin-top: .4rem; font-size: 14px; }
+.resp .send { margin-top: 1rem; }
+
+/* Pied de page */
+.site-footer { padding-block: 3rem 2rem; border-top: 1px solid var(--line); }
+.foot-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.foot-top .socials { display: flex; gap: .3rem; }
+.foot-top a.top { color: var(--muted); font-size: 15px; text-decoration: none; }
+.foot-top a.top:hover { color: var(--fg); }
+.site-footer .bigname { margin-top: 2.5rem; }
+.foot-bottom { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-top: 1.6rem; font-size: 14px; color: var(--faint); }
+
+/* Chargement */
+.rise { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+.rise.d1 { animation-delay: .08s; } .rise.d2 { animation-delay: .16s; } .rise.d3 { animation-delay: .24s; } .rise.d4 { animation-delay: .32s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 860px) {
+  .site-header .wrap { grid-template-columns: auto 1fr; }
+  .site-header nav { display: none; }
+  .logo { justify-self: start; }
+  .hero-grid, .projects, .services { grid-template-columns: minmax(0, 1fr); }
+  .hero-art { order: -1; }
+  .svc-aside { position: static; height: auto; padding: 0; }
+  .svc-tabs { display: none; }
+  .svc-list { padding-block: 0; gap: 4rem; }
+  .tool-row { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+  .job { grid-template-columns: minmax(0, 1fr); }
+  .job .when { order: -1; }
+}
+@media (max-width: 480px) {
+  .theme-toggle .lbl { display: none; }
+  .theme-toggle { padding: 0 .7rem; }
+  .p-stack { grid-template-columns: minmax(0, 1fr); }
+  .req .body { padding-left: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<a class="sr-only" href="#projets">Aller au contenu</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <nav aria-label="Navigation principale">
+      <ul class="nav">
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="logo" href="#accueil" aria-label="Retour en haut">ib</a>
+    <div class="header-tools">
+      <a class="social" href="https://github.com/ibrahima036" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+      </a>
+      <a class="social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+      </a>
+      <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Changer de thème">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg>
+        <span class="lbl" id="theme-label">Sombre</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ ACCUEIL ============ -->
+  <section class="hero" id="accueil">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1 class="rise">
+            <span class="sr-only">Ibrahima. </span>Développeur web,
+            <span class="sub">je conçois des <span class="accent">applications métier</span> et des <span class="accent">outils sur mesure</span>.</span>
+          </h1>
+          <p class="origin rise d1">Originaire de <span class="flag-gn" aria-hidden="true"></span><strong>Guinée</strong>, basé à Conakry.</p>
+          <div class="hero-actions rise d2">
+            <a class="btn btn-solid" href="mailto:ibrahima@example.com" id="mail-btn" data-email="ibrahima@example.com">M'écrire</a>
+            <a class="btn" href="assets/cv.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+              Télécharger mon CV
+            </a>
+            <span class="copied" id="copied" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+        <div class="hero-art rise d3">
+          <canvas id="art" aria-hidden="true"></canvas>
+          <img src="assets/photo.jpg" alt="Portrait d'Ibrahima" onerror="this.hidden=true">
+        </div>
+      </div>
+      <p class="bigname fit rise d4" aria-hidden="true"><span>Ibrahima</span></p>
+      <p class="say"><span class="mono">/i.bʁa.i.ma/</span><span>dites i-bra-hi-ma</span></p>
+    </div>
+  </section>
+
+  <!-- ============ PROJETS ============ -->
+  <section id="projets">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Mes projets</h2>
+        <a class="pill-link" href="https://github.com/ibrahima036" target="_blank" rel="noopener">Tous les projets
+          <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+        </a>
+      </div>
+
+      <div class="projects">
+        <div class="stage-col">
+          <div class="stage" id="stage" aria-roledescription="carrousel" aria-label="Projets">
+            <!-- Carte 1 -->
+            <article class="p-card" data-pos="0">
+              <div class="p-card-top"><span class="p-mark">C</span>Carte BCRG</div>
+              <div class="p-card-body">
+                <div class="mini-card" aria-hidden="true"><div class="ph"></div><div class="ln"><i></i><i></i><i></i><i></i></div><div class="qr"></div></div>
+              </div>
+            </article>
+            <!-- Carte 2 -->
+            <article class="p-card" data-pos="1">
+              <div class="p-card-top"><span class="p-mark">S</span>Stocko</div>
+              <div class="p-card-body">
+                <div class="mini-dash" aria-hidden="true">
+                  <div class="side"><i></i><i></i><i></i><i></i></div>
+                  <div class="main"><b style="height:38%"></b><b style="height:62%"></b><b style="height:48%"></b><b style="height:88%"></b><b style="height:56%"></b></div>
+                </div>
+              </div>
+            </article>
+            <!-- Carte 3 -->
+            <article class="p-card" data-pos="2">
+              <div class="p-card-top"><span class="p-mark">K</span>Kaloum Saveurs</div>
+              <div class="p-card-body">
+                <div class="mini-site" aria-hidden="true">
+                  <div class="t">La cuisine guinéenne,<br><em>livrée à Kaloum</em>.</div>
+                  <div class="row"><i></i><i></i></div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="stage-nav">
+            <button class="icon-btn" type="button" id="prev" aria-label="Projet précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5m6 6-6-6 6-6"/></svg></button>
+            <button class="icon-btn" type="button" id="next" aria-label="Projet suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+
+        <div class="p-info" id="p-info" aria-live="polite">
+          <p class="p-hint">Utilisez les flèches pour parcourir les projets. Sur mobile, faites glisser les cartes.</p>
+          <div class="p-title"><span class="p-mark" id="p-mark">C</span><h3 id="p-name">Carte BCRG</h3><span class="badge" id="p-badge" hidden>Exemple</span></div>
+          <p class="p-desc" id="p-desc"></p>
+          <p class="p-meta" id="p-meta"></p>
+          <ul class="p-stack" id="p-stack"></ul>
+          <div class="p-links" id="p-links"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section id="services">
+    <div class="wrap">
+      <h2>Ce que je peux faire pour vous</h2>
+      <div class="services">
+        <div class="svc-aside">
+          <ul class="svc-tabs" id="svc-tabs">
+            <li><a href="#svc-1" class="on"><span class="n">01</span>Créer</a></li>
+            <li><a href="#svc-2"><span class="n">02</span>Reprendre</a></li>
+            <li><a href="#svc-3"><span class="n">03</span>Automatiser</a></li>
+          </ul>
+        </div>
+        <ol class="svc-list">
+          <li class="svc" id="svc-1">
+            <span class="n">01</span>
+            <h3><span class="accent">Créer</span> votre application de A à Z</h3>
+            <p class="pain">Vous gérez encore vos clients, vos stocks ou vos dossiers dans des fichiers Excel.</p>
+            <p class="how">Je pars de votre façon de travailler, je modélise vos données et je construis l'application web qui va avec : écrans simples, accès par rôle, exports PDF. Elle est en ligne, testée et documentée dès la première version.</p>
+            <p class="get">Ce que vous obtenez</p>
+            <ul class="deliver">
+              <li>Une base de données pensée pour votre activité</li>
+              <li>Une application utilisable sur ordinateur et téléphone</li>
+              <li>Une mise en ligne avec sauvegardes et documentation</li>
+            </ul>
+          </li>
+          <li class="svc" id="svc-2">
+            <span class="n">02</span>
+            <h3><span class="accent">Reprendre</span> un site lent, fragile ou abandonné</h3>
+            <p class="pain">Le site fonctionne à peu près, mais personne n'ose y toucher depuis le départ de son développeur.</p>
+            <p class="how">Je lis le code, j'écris ce qu'il fait vraiment, puis je corrige d'abord ce qui fait mal : pages lentes, erreurs cachées, failles de sécurité. Le site reste en ligne pendant tout le travail.</p>
+            <p class="get">Ce que vous obtenez</p>
+            <ul class="deliver">
+              <li>Un état des lieux clair de l'existant</li>
+              <li>Les problèmes les plus graves corrigés en premier</li>
+              <li>Un code que votre équipe peut faire évoluer</li>
+            </ul>
+          </li>
+          <li class="svc" id="svc-3">
+            <span class="n">03</span>
+            <h3><span class="accent">Automatiser</span> les tâches qui vous prennent des heures</h3>
+            <p class="pain">Chaque mois, quelqu'un recopie les mêmes chiffres, imprime les mêmes documents, envoie les mêmes e-mails.</p>
+            <p class="how">Je génère vos documents (cartes, attestations, factures) à partir de vos données, je branche les paiements mobiles et les envois d'e-mails, et je garde une trace de chaque opération.</p>
+            <p class="get">Ce que vous obtenez</p>
+            <ul class="deliver">
+              <li>Des documents générés et prêts à imprimer</li>
+              <li>Paiements, e-mails et SMS reliés à votre outil</li>
+              <li>Un historique qui montre ce qui s'est passé, et quand</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <div class="sub-block">
+        <h2>Mes outils</h2>
+        <div class="rows">
+          <div class="tool-row"><span class="k">Langages</span>
+            <ul><li><span class="ab">php</span>PHP</li><li><span class="ab">js</span>JavaScript</li><li><span class="ab">ts</span>TypeScript</li><li><span class="ab">sql</span>SQL</li><li><span class="ab">py</span>Python</li></ul></div>
+          <div class="tool-row"><span class="k">Interfaces</span>
+            <ul><li><span class="ab">htm</span>HTML</li><li><span class="ab">css</span>CSS</li><li><span class="ab">re</span>React</li><li><span class="ab">tw</span>Tailwind CSS</li></ul></div>
+          <div class="tool-row"><span class="k">Serveur et données</span>
+            <ul><li><span class="ab">lv</span>Laravel</li><li><span class="ab">nd</span>Node.js</li><li><span class="ab">my</span>MySQL</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">api</span>REST</li></ul></div>
+          <div class="tool-row"><span class="k">Qualité et mise en ligne</span>
+            <ul><li><span class="ab">git</span>Git et GitHub</li><li><span class="ab">dk</span>Docker</li><li><span class="ab">lx</span>Linux</li><li><span class="ab">ci</span>GitHub Actions</li></ul></div>
+        </div>
+      </div>
+
+      <div class="sub-block" id="parcours">
+        <h2>Où je travaille aujourd'hui</h2>
+        <div class="rows">
+          <div class="job">
+            <span class="org">Indépendant</span>
+            <div><p class="role">Développeur web full-stack</p><p class="what">Applications de gestion, générateurs de documents et sites pour des entreprises et des institutions à Conakry.</p></div>
+            <span class="when">2024 – aujourd'hui</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Parlons-en</h2>
+      <p class="lede">Un poste à pourvoir, une application à créer ou à reprendre, ou simplement un bonjour ? Envoyez une requête à ma boîte mail, ou écrivez-moi directement.</p>
+      <a class="big-mail" href="mailto:ibrahima@example.com" id="big-mail">ibrahima@example.com</a>
+
+      <form class="req" id="req" novalidate>
+        <span class="line top"><span class="verb">POST</span><span class="path">/ibrahima/messages</span></span>
+        <span class="line">Content-Type: application/json</span>
+        <span class="line">// un message, directement dans ma boîte</span>
+        <span class="line key">{</span>
+        <div class="body">
+          <fieldset>
+            <legend>"sujet":</legend>
+            <label class="opt"><input type="radio" name="sujet" id="s-poste" value="poste" checked><span class="v">"poste"</span><span class="c">// un recrutement</span></label>
+            <label class="opt"><input type="radio" name="sujet" id="s-projet" value="projet"><span class="v">"projet"</span><span class="c">// une application à créer ou reprendre</span></label>
+            <label class="opt"><input type="radio" name="sujet" id="s-bonjour" value="bonjour"><span class="v">"bonjour"</span><span class="c">// juste dire bonjour</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="f-nom">"nom":</label>
+            <div class="in"><span class="q">"</span><input type="text" id="f-nom" name="nom" placeholder="Mariama Diallo" autocomplete="name"><span class="q">",</span></div>
+          </div>
+          <div class="field">
+            <label for="f-email">"email":</label>
+            <div class="in"><span class="q">"</span><input type="email" id="f-email" name="email" placeholder="vous@entreprise.com" autocomplete="email"><span class="q">",</span></div>
+          </div>
+          <div class="field">
+            <label for="f-message">"message":</label>
+            <div class="in"><span class="q">"</span><textarea id="f-message" name="message" rows="3" placeholder="Sur quoi travaillez-vous ?"></textarea><span class="q">"</span></div>
+          </div>
+        </div>
+        <span class="line key">}</span>
+        <div class="send">
+          <button class="btn btn-solid" type="submit">Envoyer la requête</button>
+          <span class="err" id="req-err" role="alert"></span>
+        </div>
+        <div class="resp" id="resp" hidden>
+          <span class="line status"><b>202</b> Accepted</span>
+          <p>Votre messagerie s'ouvre avec le message prérempli. Si rien ne s'ouvre, copiez-le et envoyez-le à l'adresse ci-dessus.</p>
+          <div class="send">
+            <button class="btn" type="button" id="copy-msg">Copier le message</button>
+            <button class="btn" type="button" id="again">Écrire un autre message</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="socials">
+        <a class="social" href="https://github.com/ibrahima036" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+        <a class="social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+      </div>
+      <a class="top" href="#accueil">Retour en haut ↑</a>
+    </div>
+    <p class="bigname fit" aria-hidden="true"><span>Ibrahima</span></p>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Ibrahima</span>
+      <span>Conçu et codé à Conakry</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Thème ---------- */
+  var themeLabel = document.getElementById("theme-label");
+  function currentTheme() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t;
+    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  }
+  function syncThemeLabel() { themeLabel.textContent = currentTheme() === "dark" ? "Sombre" : "Clair"; }
+  try { var saved = localStorage.getItem("theme"); if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved); } catch (e) {}
+  syncThemeLabel();
+  document.getElementById("theme-toggle").addEventListener("click", function () {
+    var next = currentTheme() === "dark" ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    syncThemeLabel();
+    drawArt();
+  });
+  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", function () { syncThemeLabel(); drawArt(); });
+  new MutationObserver(function () { syncThemeLabel(); drawArt(); }).observe(root, { attributes: true, attributeFilter: ["data-theme"] });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------- Grand nom ajusté à la largeur ---------- */
+  function fitNames() {
+    document.querySelectorAll(".fit").forEach(function (el) {
+      var w = el.clientWidth;
+      el.style.fontSize = "100px";
+      var natural = el.firstElementChild.getBoundingClientRect().width;
+      if (natural > 0) el.style.fontSize = Math.floor(100 * w / natural * 0.995) + "px";
+    });
+  }
+  fitNames();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
+  window.addEventListener("resize", fitNames);
+
+  /* ---------- Copier l'e-mail ---------- */
+  var copied = document.getElementById("copied");
+  var mailBtn = document.getElementById("mail-btn");
+  mailBtn.addEventListener("click", function () {
+    var email = mailBtn.getAttribute("data-email");
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function () {
+        copied.textContent = "Adresse copiée : " + email;
+      }, function () { copied.textContent = email; });
+    } else { copied.textContent = email; }
+  });
+
+  /* ---------- Visuel génératif : sphère gravée ---------- */
+  var canvas = document.getElementById("art");
+  var ctx = canvas.getContext("2d");
+  var light = { x: -0.55, y: -0.6 };
+  function token(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+  function drawArt() {
+    var rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = rect.width, H = rect.height;
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    var fg = token("--fg"), accent = token("--accent");
+    var cx = W * 0.56, cy = H * 0.5, R = Math.min(W, H) * 0.36;
+    var gap = Math.max(4, H / 70), step = 3;
+    var lx = light.x, ly = light.y, lz = Math.sqrt(Math.max(0, 1 - lx * lx - ly * ly));
+    ctx.lineCap = "round";
+    ctx.strokeStyle = fg;
+    for (var y0 = -gap * 2; y0 < H + gap * 2; y0 += gap) {
+      var px = null, py = null;
+      for (var x = 0; x <= W + step; x += step) {
+        var dx = (x - cx) / R, dy = (y0 - cy) / R, d2 = dx * dx + dy * dy;
+        var y, wdt, a;
+        if (d2 < 1) {
+          var nz = Math.sqrt(1 - d2);
+          y = cy + dy * R * (0.82 + 0.18 * (1 - nz)) + Math.sin(dx * 6 + dy * 3) * 1.2;
+          var lum = Math.max(0, dx * lx + dy * ly + nz * lz);
+          wdt = 0.35 + 2.1 * Math.pow(1 - lum, 1.4);
+          a = 0.95;
+        } else {
+          var dist = Math.sqrt(d2);
+          y = y0 + Math.sin(x * 0.012 + y0 * 0.045) * 4 * Math.min(1, (dist - 1) * 2) + Math.sin(x * 0.031 - y0 * 0.02) * 2;
+          wdt = 0.5 + 0.6 * Math.max(0, Math.sin(x * 0.02 + y0 * 0.07));
+          a = Math.max(0, 0.5 - (dist - 1) * 0.22);
+          // ombre portée sous la sphère
+          var sx = (x - (cx - lx * R * 0.6)) / (R * 1.5), sy = (y0 - (cy + R * 1.05)) / (R * 0.32);
+          if (sx * sx + sy * sy < 1) wdt += 1.4 * (1 - (sx * sx + sy * sy));
+        }
+        if (px !== null && a > 0.02) {
+          ctx.globalAlpha = a; ctx.lineWidth = wdt;
+          ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(x, y); ctx.stroke();
+        }
+        px = x; py = y;
+      }
+    }
+    // orbite en couleur d'accent
+    ctx.globalAlpha = 1; ctx.strokeStyle = accent; ctx.lineWidth = 1.4;
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.32);
+    ctx.beginPath(); ctx.ellipse(0, 0, R * 1.45, R * 0.36, 0, Math.PI * 0.98, Math.PI * 2.02); ctx.stroke();
+    ctx.beginPath(); ctx.fillStyle = accent; ctx.arc(R * 1.45 * Math.cos(Math.PI * 1.86), R * 0.36 * Math.sin(Math.PI * 1.86), 4.5, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+  drawArt();
+  window.addEventListener("resize", drawArt);
+  if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
+    var raf = 0;
+    window.addEventListener("pointermove", function (e) {
+      var r = canvas.getBoundingClientRect();
+      var nx = (e.clientX - (r.left + r.width * 0.56)) / window.innerWidth;
+      var ny = (e.clientY - (r.top + r.height * 0.5)) / window.innerHeight;
+      var lx = Math.max(-0.75, Math.min(0.75, nx * 1.4)), ly = Math.max(-0.75, Math.min(0.75, ny * 1.4));
+      light = { x: lx, y: ly };
+      if (!raf) raf = requestAnimationFrame(function () { raf = 0; drawArt(); });
+    });
+  }
+
+  /* ---------- Carrousel de projets ---------- */
+  var projects = [
+    {
+      mark: "C", name: "Carte BCRG", example: false,
+      desc: "Générateur de cartes professionnelles recto verso au format 85,6 × 47 mm pour les courtiers en assurance, avec QR code de vérification et impression directe sur imprimante à cartes.",
+      meta: [["Livré", "nov. 2026"], ["", "Projet personnel, code ouvert."]],
+      stack: ["HTML", "CSS (container queries)", "JavaScript", "PHP", "QR code", "Impression à cartes"],
+      links: [["Voir le code", "https://github.com/ibrahima036/carte-bcrg", true]]
+    },
+    {
+      mark: "S", name: "Stocko", example: true,
+      desc: "Application de gestion de stock pour boutiques : entrées, sorties, alertes de rupture et rapports mensuels en PDF.",
+      meta: [["Livré", "2025"], ["", "Projet d'exemple, à remplacer."]],
+      stack: ["Laravel", "MySQL", "Tailwind CSS", "Alpine.js", "DomPDF"],
+      links: [["Étude de cas", "#", false], ["Voir le code", "https://github.com/ibrahima036", true]]
+    },
+    {
+      mark: "K", name: "Kaloum Saveurs", example: true,
+      desc: "Site vitrine et prise de commande pour un restaurant de Conakry, avec menu modifiable et paiement par Orange Money.",
+      meta: [["Prévu", "2027"], ["", "Projet d'exemple, à remplacer."]],
+      stack: ["Next.js", "TypeScript", "PostgreSQL", "Orange Money API"],
+      links: [["Visiter le site", "#", false]]
+    }
+  ];
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".p-card"));
+  var info = document.getElementById("p-info");
+  var idx = 0;
+  var ghIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>';
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function render(animate) {
+    var n = cards.length;
+    cards.forEach(function (c, i) {
+      var pos = (i - idx + n) % n;
+      c.setAttribute("data-pos", pos <= 2 ? String(pos) : "hidden");
+      c.setAttribute("aria-hidden", pos === 0 ? "false" : "true");
+    });
+    var p = projects[idx];
+    document.getElementById("p-mark").textContent = p.mark;
+    document.getElementById("p-name").textContent = p.name;
+    document.getElementById("p-badge").hidden = !p.example;
+    document.getElementById("p-desc").textContent = p.desc;
+    document.getElementById("p-meta").innerHTML = p.meta.map(function (m) {
+      return m[0] ? "<span>" + esc(m[0]) + "<b>" + esc(m[1]) + "</b></span>" : "<span>" + esc(m[1]) + "</span>";
+    }).join("");
+    document.getElementById("p-stack").innerHTML = p.stack.map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("");
+    document.getElementById("p-links").innerHTML = p.links.map(function (l, i) {
+      var cls = i === 0 ? "btn btn-solid" : "btn";
+      return '<a class="' + cls + '" href="' + esc(l[1]) + '"' + (l[1].charAt(0) === "#" ? "" : ' target="_blank" rel="noopener"') + ">" + (l[2] ? ghIcon : "") + esc(l[0]) + "</a>";
+    }).join("");
+    if (animate) { info.classList.remove("swap"); void info.offsetWidth; info.classList.add("swap"); }
+  }
+  function go(d) { idx = (idx + d + cards.length) % cards.length; render(true); }
+  document.getElementById("prev").addEventListener("click", function () { go(-1); });
+  document.getElementById("next").addEventListener("click", function () { go(1); });
+  var stage = document.getElementById("stage");
+  stage.tabIndex = 0;
+  stage.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); }
+    if (e.key === "ArrowRight") { go(1); e.preventDefault(); }
+  });
+  var startX = null;
+  stage.addEventListener("pointerdown", function (e) { startX = e.clientX; });
+  stage.addEventListener("pointerup", function (e) {
+    if (startX === null) return;
+    var dx = e.clientX - startX; startX = null;
+    if (Math.abs(dx) > 40) go(dx < 0 ? 1 : -1);
+  });
+  render(false);
+
+  /* ---------- Onglets des services ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll("#svc-tabs a"));
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        tabs.forEach(function (t) { t.classList.toggle("on", t.getAttribute("href") === "#" + en.target.id); });
+      });
+    }, { rootMargin: "-45% 0px -45% 0px" });
+    document.querySelectorAll(".svc").forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- Formulaire de contact ---------- */
+  var form = document.getElementById("req");
+  var err = document.getElementById("req-err");
+  var resp = document.getElementById("resp");
+  var bigMail = document.getElementById("big-mail");
+  var lastText = "";
+  var subjects = { poste: "Recrutement", projet: "Projet", bonjour: "Bonjour" };
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nom = form.nom.value.trim(), email = form.email.value.trim(), msg = form.message.value.trim();
+    var sujet = form.querySelector('input[name="sujet"]:checked').value;
+    if (!nom || !email || !msg) { err.textContent = "400 : renseignez votre nom, votre e-mail et votre message."; return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "422 : l'adresse e-mail semble incomplète."; form.email.focus(); return; }
+    err.textContent = "";
+    var subject = subjects[sujet] + " : message de " + nom;
+    lastText = msg + "\n\n" + nom + "\n" + email;
+    var to = bigMail.textContent.trim();
+    resp.hidden = false;
+    window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastText);
+  });
+  document.getElementById("copy-msg").addEventListener("click", function () {
+    var btn = this;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastText).then(function () { btn.textContent = "Message copié"; }, function () { form.message.select(); });
+    } else { form.message.select(); }
+  });
+  document.getElementById("again").addEventListener("click", function () {
+    form.reset(); resp.hidden = true; document.getElementById("copy-msg").textContent = "Copier le message"; form.nom.focus();
+  });
+})();
+</script>
+</body>
+</html>
