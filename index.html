@@ -3,19 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ibrahima, développeur web</title>
+<title>Ibrahima Bah, développeur web et mobile</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Ibrahima, développeur web full-stack basé à Conakry : applications métier, outils internes et sites sur mesure.">
+<meta name="description" content="Ibrahima Bah, développeur web et mobile freelance basé à Conakry : plateformes métier, applications mobiles et API.">
 <!--
-  PORTFOLIO — à personnaliser
-  Tout le texte est en français, directement dans ce fichier. Remplacez :
-    • le nom « Ibrahima », le métier, la ville et la prononciation (section #accueil)
-    • l'adresse e-mail : cherchez « ibrahima@example.com » (3 occurrences : bouton, grand lien, formulaire)
-    • les liens GitHub / LinkedIn (en-tête et pied de page)
-    • les projets marqués « Exemple » (section #projets) et le parcours (section #parcours)
-  Fichiers optionnels, à déposer à côté de ce fichier :
-    • assets/photo.jpg  → remplace le visuel génératif du haut de page (affichée en noir et blanc)
-    • assets/cv.pdf     → cible du bouton « Télécharger mon CV »
+  PORTFOLIO D'IBRAHIMA BAH
+  Tout le texte est en français, directement dans ce fichier.
+    • projets : tableau `projects` dans le script en bas du fichier + cartes .p-card de la section #projets
+    • outils et parcours : sections #services et #parcours
+  Fichiers optionnels, à déposer dans assets/ :
+    • assets/photo.jpg → remplace le visuel génératif du haut de page (affichée en noir et blanc)
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -145,13 +142,27 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 }
 .hero-actions { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 2rem; align-items: center; }
 .copied { font-size: 14px; color: var(--accent); }
+.mail-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
+.mail-row .big-mail { margin-top: 0; }
+.phone { margin-top: 1.2rem; color: var(--muted); display: flex; gap: .6rem 1rem; flex-wrap: wrap; align-items: center; }
+.phone a { color: var(--fg); text-decoration: none; font-variant-numeric: tabular-nums; }
+.phone a:hover { color: var(--accent); }
+.mini-kanban { width: 84%; height: 70%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.mini-kanban .col { border-radius: 10px; background: var(--surface); padding: 12px 10px; display: grid; align-content: start; gap: 8px; }
+.mini-kanban .col::before { content: ""; display: block; height: 6px; width: 55%; border-radius: 3px; background: var(--faint); opacity: .6; margin-bottom: 4px; }
+.mini-kanban i { display: block; height: 26px; border-radius: 6px; background: var(--line); }
+.mini-kanban .col:nth-child(2) i:first-child { background: var(--accent); }
+.mini-kanban .col:nth-child(3) i { opacity: .5; }
 .hero-art {
   position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
   -webkit-mask-image: radial-gradient(ellipse 72% 72% at 55% 50%, #000 48%, transparent 100%);
   mask-image: radial-gradient(ellipse 72% 72% at 55% 50%, #000 48%, transparent 100%);
 }
-.hero-art canvas, .hero-art img { position: absolute; inset: 0; width: 100%; height: 100%; }
-.hero-art img { object-fit: cover; filter: grayscale(1) contrast(1.15); }
+.hero-art canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; }
+.hero-art img {
+  position: absolute; z-index: 0; border-radius: 50%; object-fit: cover; object-position: 50% 28%;
+  filter: grayscale(1) contrast(1.08); background: var(--surface);
+}
 
 .bigname {
   font-family: var(--font-name); font-weight: 400; line-height: 1; white-space: nowrap;
@@ -365,8 +376,8 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       <a class="social" href="https://github.com/ibrahima036" target="_blank" rel="noopener" aria-label="GitHub">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
       </a>
-      <a class="social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+      <a class="social" href="https://wa.me/224624959700" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
       </a>
       <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Changer de thème">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg>
@@ -383,26 +394,23 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       <div class="hero-grid">
         <div>
           <h1 class="rise">
-            <span class="sr-only">Ibrahima. </span>Développeur web,
-            <span class="sub">je conçois des <span class="accent">applications métier</span> et des <span class="accent">outils sur mesure</span>.</span>
+            <span class="sr-only">Ibrahima Bah. </span>Développeur web et mobile,
+            <span class="sub">je conçois des <span class="accent">plateformes métier</span> et des <span class="accent">applications mobiles</span>, de l'interface au serveur.</span>
           </h1>
           <p class="origin rise d1">Originaire de <span class="flag-gn" aria-hidden="true"></span><strong>Guinée</strong>, basé à Conakry.</p>
           <div class="hero-actions rise d2">
-            <a class="btn btn-solid" href="mailto:ibrahima@example.com" id="mail-btn" data-email="ibrahima@example.com">M'écrire</a>
-            <a class="btn" href="assets/cv.pdf" download>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-              Télécharger mon CV
-            </a>
+            <button class="btn btn-solid" type="button" id="mail-btn" data-copy="ibrahimibnmohamed9697@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copier mon e-mail</button>
+            <a class="btn" href="https://wa.me/224624959700" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp</a>
             <span class="copied" id="copied" role="status" aria-live="polite"></span>
           </div>
         </div>
         <div class="hero-art rise d3">
           <canvas id="art" aria-hidden="true"></canvas>
-          <img src="assets/photo.jpg" alt="Portrait d'Ibrahima" onerror="this.hidden=true">
+          <img src="assets/photo.jpg" alt="Portrait d'Ibrahima Bah" onerror="this.hidden=true">
         </div>
       </div>
-      <p class="bigname fit rise d4" aria-hidden="true"><span>Ibrahima</span></p>
-      <p class="say"><span class="mono">/i.bʁa.i.ma/</span><span>dites i-bra-hi-ma</span></p>
+      <p class="bigname fit rise d4" aria-hidden="true"><span>Ibrahima Bah</span></p>
+      <p class="say"><span class="mono">/i.bʁa.i.ma ba/</span><span>dites i-bra-hi-ma ba</span></p>
     </div>
   </section>
 
@@ -419,16 +427,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       <div class="projects">
         <div class="stage-col">
           <div class="stage" id="stage" aria-roledescription="carrousel" aria-label="Projets">
-            <!-- Carte 1 -->
+            <!-- Carte 1 : Baara -->
             <article class="p-card" data-pos="0">
-              <div class="p-card-top"><span class="p-mark">C</span>Carte BCRG</div>
-              <div class="p-card-body">
-                <div class="mini-card" aria-hidden="true"><div class="ph"></div><div class="ln"><i></i><i></i><i></i><i></i></div><div class="qr"></div></div>
-              </div>
-            </article>
-            <!-- Carte 2 -->
-            <article class="p-card" data-pos="1">
-              <div class="p-card-top"><span class="p-mark">S</span>Stocko</div>
+              <div class="p-card-top"><span class="p-mark">B</span>Baara</div>
               <div class="p-card-body">
                 <div class="mini-dash" aria-hidden="true">
                   <div class="side"><i></i><i></i><i></i><i></i></div>
@@ -436,14 +437,22 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
                 </div>
               </div>
             </article>
-            <!-- Carte 3 -->
-            <article class="p-card" data-pos="2">
-              <div class="p-card-top"><span class="p-mark">K</span>Kaloum Saveurs</div>
+            <!-- Carte 2 : Inekto -->
+            <article class="p-card" data-pos="1">
+              <div class="p-card-top"><span class="p-mark">I</span>Inekto</div>
               <div class="p-card-body">
-                <div class="mini-site" aria-hidden="true">
-                  <div class="t">La cuisine guinéenne,<br><em>livrée à Kaloum</em>.</div>
-                  <div class="row"><i></i><i></i></div>
+                <div class="mini-kanban" aria-hidden="true">
+                  <div class="col"><i></i><i></i><i></i></div>
+                  <div class="col"><i></i><i></i></div>
+                  <div class="col"><i></i><i></i><i></i></div>
                 </div>
+              </div>
+            </article>
+            <!-- Carte 3 : Gestion des cartes -->
+            <article class="p-card" data-pos="2">
+              <div class="p-card-top"><span class="p-mark">C</span>Gestion des cartes</div>
+              <div class="p-card-body">
+                <div class="mini-card" aria-hidden="true"><div class="ph"></div><div class="ln"><i></i><i></i><i></i><i></i></div><div class="qr"></div></div>
               </div>
             </article>
           </div>
@@ -455,7 +464,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 
         <div class="p-info" id="p-info" aria-live="polite">
           <p class="p-hint">Utilisez les flèches pour parcourir les projets. Sur mobile, faites glisser les cartes.</p>
-          <div class="p-title"><span class="p-mark" id="p-mark">C</span><h3 id="p-name">Carte BCRG</h3><span class="badge" id="p-badge" hidden>Exemple</span></div>
+          <div class="p-title"><span class="p-mark" id="p-mark">B</span><h3 id="p-name">Baara</h3><span class="badge" id="p-badge" hidden>Exemple</span></div>
           <p class="p-desc" id="p-desc"></p>
           <p class="p-meta" id="p-meta"></p>
           <ul class="p-stack" id="p-stack"></ul>
@@ -480,13 +489,13 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
         <ol class="svc-list">
           <li class="svc" id="svc-1">
             <span class="n">01</span>
-            <h3><span class="accent">Créer</span> votre application de A à Z</h3>
-            <p class="pain">Vous gérez encore vos clients, vos stocks ou vos dossiers dans des fichiers Excel.</p>
-            <p class="how">Je pars de votre façon de travailler, je modélise vos données et je construis l'application web qui va avec : écrans simples, accès par rôle, exports PDF. Elle est en ligne, testée et documentée dès la première version.</p>
+            <h3><span class="accent">Créer</span> votre plateforme web et mobile</h3>
+            <p class="pain">Vous gérez encore vos clients, vos stocks ou vos équipes dans des cahiers et des fichiers Excel.</p>
+            <p class="how">Je pars de votre façon de travailler, je modélise vos données et je construis l'API, la plateforme web pour le bureau et l'application mobile pour le terrain, utilisable même avec un réseau faible.</p>
             <p class="get">Ce que vous obtenez</p>
             <ul class="deliver">
               <li>Une base de données pensée pour votre activité</li>
-              <li>Une application utilisable sur ordinateur et téléphone</li>
+              <li>Une plateforme web et une application mobile reliées</li>
               <li>Une mise en ligne avec sauvegardes et documentation</li>
             </ul>
           </li>
@@ -521,13 +530,15 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
         <h2>Mes outils</h2>
         <div class="rows">
           <div class="tool-row"><span class="k">Langages</span>
-            <ul><li><span class="ab">php</span>PHP</li><li><span class="ab">js</span>JavaScript</li><li><span class="ab">ts</span>TypeScript</li><li><span class="ab">sql</span>SQL</li><li><span class="ab">py</span>Python</li></ul></div>
-          <div class="tool-row"><span class="k">Interfaces</span>
-            <ul><li><span class="ab">htm</span>HTML</li><li><span class="ab">css</span>CSS</li><li><span class="ab">re</span>React</li><li><span class="ab">tw</span>Tailwind CSS</li></ul></div>
+            <ul><li><span class="ab">ts</span>TypeScript</li><li><span class="ab">js</span>JavaScript</li><li><span class="ab">java</span>Java</li><li><span class="ab">php</span>PHP</li><li><span class="ab">sql</span>SQL</li><li><span class="ab">py</span>Python</li></ul></div>
+          <div class="tool-row"><span class="k">Web</span>
+            <ul><li><span class="ab">re</span>React</li><li><span class="ab">tq</span>TanStack Query et Router</li><li><span class="ab">tw</span>Tailwind CSS</li><li><span class="ab">ui</span>shadcn/ui</li><li><span class="ab">htm</span>HTML et CSS</li></ul></div>
+          <div class="tool-row"><span class="k">Mobile</span>
+            <ul><li><span class="ab">rn</span>React Native</li><li><span class="ab">ex</span>Expo</li></ul></div>
           <div class="tool-row"><span class="k">Serveur et données</span>
-            <ul><li><span class="ab">lv</span>Laravel</li><li><span class="ab">nd</span>Node.js</li><li><span class="ab">my</span>MySQL</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">api</span>REST</li></ul></div>
-          <div class="tool-row"><span class="k">Qualité et mise en ligne</span>
-            <ul><li><span class="ab">git</span>Git et GitHub</li><li><span class="ab">dk</span>Docker</li><li><span class="ab">lx</span>Linux</li><li><span class="ab">ci</span>GitHub Actions</li></ul></div>
+            <ul><li><span class="ab">ns</span>NestJS</li><li><span class="ab">sb</span>Spring Boot</li><li><span class="ab">sy</span>Symfony</li><li><span class="ab">orm</span>TypeORM</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">api</span>REST et Swagger</li></ul></div>
+          <div class="tool-row"><span class="k">Outils</span>
+            <ul><li><span class="ab">git</span>Git et GitHub</li><li><span class="ab">nb</span>Jupyter</li></ul></div>
         </div>
       </div>
 
@@ -535,9 +546,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
         <h2>Où je travaille aujourd'hui</h2>
         <div class="rows">
           <div class="job">
-            <span class="org">Indépendant</span>
-            <div><p class="role">Développeur web full-stack</p><p class="what">Applications de gestion, générateurs de documents et sites pour des entreprises et des institutions à Conakry.</p></div>
-            <span class="when">2024 – aujourd'hui</span>
+            <span class="org">Freelance</span>
+            <div><p class="role">Développeur web et mobile</p><p class="what">Plateformes web, applications mobiles et outils de gestion pour des entreprises en Guinée, dont Baara et Inekto.</p></div>
+            <span class="when">aujourd'hui</span>
           </div>
         </div>
       </div>
@@ -549,7 +560,11 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     <div class="wrap">
       <h2>Parlons-en</h2>
       <p class="lede">Un poste à pourvoir, une application à créer ou à reprendre, ou simplement un bonjour ? Envoyez une requête à ma boîte mail, ou écrivez-moi directement.</p>
-      <a class="big-mail" href="mailto:ibrahima@example.com" id="big-mail">ibrahima@example.com</a>
+      <div class="mail-row">
+        <a class="big-mail" href="mailto:ibrahimibnmohamed9697@gmail.com" id="big-mail">ibrahimibnmohamed9697@gmail.com</a>
+        <button class="btn" type="button" id="copy-mail" data-copy="ibrahimibnmohamed9697@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copier</button>
+      </div>
+      <p class="phone">Téléphone et WhatsApp : <a href="tel:+224624959700">+224 624 95 97 00</a> <button class="btn" type="button" id="copy-phone" data-copy="+224 624 95 97 00"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copier</button></p>
 
       <form class="req" id="req" novalidate>
         <span class="line top"><span class="verb">POST</span><span class="path">/ibrahima/messages</span></span>
@@ -599,13 +614,13 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     <div class="foot-top">
       <div class="socials">
         <a class="social" href="https://github.com/ibrahima036" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.11 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.26 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
-        <a class="social" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+        <a class="social" href="https://wa.me/224624959700" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg></a>
       </div>
       <a class="top" href="#accueil">Retour en haut ↑</a>
     </div>
-    <p class="bigname fit" aria-hidden="true"><span>Ibrahima</span></p>
+    <p class="bigname fit" aria-hidden="true"><span>Ibrahima Bah</span></p>
     <div class="foot-bottom">
-      <span>© <span id="year">2026</span> Ibrahima</span>
+      <span>© <span id="year">2026</span> Ibrahima Bah</span>
       <span>Conçu et codé à Conakry</span>
     </div>
   </div>
@@ -652,17 +667,23 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitNames);
   window.addEventListener("resize", fitNames);
 
-  /* ---------- Copier l'e-mail ---------- */
+  /* ---------- Boutons de copie ---------- */
   var copied = document.getElementById("copied");
-  var mailBtn = document.getElementById("mail-btn");
-  mailBtn.addEventListener("click", function () {
-    var email = mailBtn.getAttribute("data-email");
+  function copyFrom(btn, doneLabel) {
+    var value = btn.getAttribute("data-copy");
+    var label = btn.lastChild;
+    var original = label.textContent;
+    function done(text) {
+      label.textContent = text;
+      setTimeout(function () { label.textContent = original; }, 2200);
+    }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(email).then(function () {
-        copied.textContent = "Adresse copiée : " + email;
-      }, function () { copied.textContent = email; });
-    } else { copied.textContent = email; }
-  });
+      navigator.clipboard.writeText(value).then(function () { done(doneLabel); }, function () { done(value); });
+    } else { done(value); }
+  }
+  document.getElementById("mail-btn").addEventListener("click", function () { copyFrom(this, "E-mail copié"); });
+  document.getElementById("copy-mail").addEventListener("click", function () { copyFrom(this, "Copié"); });
+  document.getElementById("copy-phone").addEventListener("click", function () { copyFrom(this, "Copié"); });
 
   /* ---------- Visuel génératif : sphère gravée ---------- */
   var canvas = document.getElementById("art");
@@ -679,6 +700,12 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     ctx.clearRect(0, 0, W, H);
     var fg = token("--fg"), accent = token("--accent");
     var cx = W * 0.56, cy = H * 0.5, R = Math.min(W, H) * 0.36;
+    var photo = canvas.parentElement.querySelector("img");
+    var hasPhoto = !!(photo && !photo.hidden && photo.complete && photo.naturalWidth > 0);
+    if (hasPhoto) {
+      photo.style.left = (cx - R) + "px"; photo.style.top = (cy - R) + "px";
+      photo.style.width = (2 * R) + "px"; photo.style.height = (2 * R) + "px";
+    }
     var gap = Math.max(4, H / 70), step = 3;
     var lx = light.x, ly = light.y, lz = Math.sqrt(Math.max(0, 1 - lx * lx - ly * ly));
     ctx.lineCap = "round";
@@ -688,6 +715,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       for (var x = 0; x <= W + step; x += step) {
         var dx = (x - cx) / R, dy = (y0 - cy) / R, d2 = dx * dx + dy * dy;
         var y, wdt, a;
+        if (d2 < 1 && hasPhoto) { px = null; continue; }
         if (d2 < 1) {
           var nz = Math.sqrt(1 - d2);
           y = cy + dy * R * (0.82 + 0.18 * (1 - nz)) + Math.sin(dx * 6 + dy * 3) * 1.2;
@@ -719,6 +747,8 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
   }
   drawArt();
   window.addEventListener("resize", drawArt);
+  var heroPhoto = canvas.parentElement.querySelector("img");
+  if (heroPhoto) heroPhoto.addEventListener("load", drawArt);
   if (!reduceMotion && window.matchMedia("(pointer: fine)").matches) {
     var raf = 0;
     window.addEventListener("pointermove", function (e) {
@@ -734,25 +764,25 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
   /* ---------- Carrousel de projets ---------- */
   var projects = [
     {
-      mark: "C", name: "Carte BCRG", example: false,
-      desc: "Générateur de cartes professionnelles recto verso au format 85,6 × 47 mm pour les courtiers en assurance, avec QR code de vérification et impression directe sur imprimante à cartes.",
-      meta: [["Livré", "nov. 2026"], ["", "Projet personnel, code ouvert."]],
+      mark: "B", name: "Baara", example: false,
+      desc: "Plateforme web et mobile pour les entreprises du BTP. Le bureau suit commandes, livraisons, stocks et paiements ; le chef de chantier pointe ses équipes sur son téléphone, même quand le réseau est faible.",
+      meta: [["Statut", "programme pilote"], ["", "Conçu à Conakry."]],
+      stack: ["Plateforme web pour le bureau", "Application mobile terrain", "Saisie hors connexion", "Tableaux de bord financiers", "Bons de commande PDF", "Paie en francs guinéens"],
+      links: [["Visiter le site", "https://staging.baara.africa/", false]]
+    },
+    {
+      mark: "I", name: "Inekto", example: false,
+      desc: "Application de gestion de projet.",
+      meta: [],
+      stack: [],
+      links: []
+    },
+    {
+      mark: "C", name: "Gestion des cartes", example: false,
+      desc: "Émission de cartes professionnelles recto verso au format 85,6 × 47 mm pour les intermédiaires d'assurance : numéro d'agrément, dates de validité, QR code de vérification et impression directe sur imprimante à cartes.",
+      meta: [["", "Code privé."]],
       stack: ["HTML", "CSS (container queries)", "JavaScript", "PHP", "QR code", "Impression à cartes"],
-      links: [["Voir le code", "https://github.com/ibrahima036/carte-bcrg", true]]
-    },
-    {
-      mark: "S", name: "Stocko", example: true,
-      desc: "Application de gestion de stock pour boutiques : entrées, sorties, alertes de rupture et rapports mensuels en PDF.",
-      meta: [["Livré", "2025"], ["", "Projet d'exemple, à remplacer."]],
-      stack: ["Laravel", "MySQL", "Tailwind CSS", "Alpine.js", "DomPDF"],
-      links: [["Étude de cas", "#", false], ["Voir le code", "https://github.com/ibrahima036", true]]
-    },
-    {
-      mark: "K", name: "Kaloum Saveurs", example: true,
-      desc: "Site vitrine et prise de commande pour un restaurant de Conakry, avec menu modifiable et paiement par Orange Money.",
-      meta: [["Prévu", "2027"], ["", "Projet d'exemple, à remplacer."]],
-      stack: ["Next.js", "TypeScript", "PostgreSQL", "Orange Money API"],
-      links: [["Visiter le site", "#", false]]
+      links: []
     }
   ];
   var cards = Array.prototype.slice.call(document.querySelectorAll(".p-card"));
