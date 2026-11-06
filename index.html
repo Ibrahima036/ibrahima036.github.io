@@ -147,12 +147,13 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .phone { margin-top: 1.2rem; color: var(--muted); display: flex; gap: .6rem 1rem; flex-wrap: wrap; align-items: center; }
 .phone a { color: var(--fg); text-decoration: none; font-variant-numeric: tabular-nums; }
 .phone a:hover { color: var(--accent); }
-.mini-kanban { width: 84%; height: 70%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.mini-kanban .col { border-radius: 10px; background: var(--surface); padding: 12px 10px; display: grid; align-content: start; gap: 8px; }
-.mini-kanban .col::before { content: ""; display: block; height: 6px; width: 55%; border-radius: 3px; background: var(--faint); opacity: .6; margin-bottom: 4px; }
-.mini-kanban i { display: block; height: 26px; border-radius: 6px; background: var(--line); }
-.mini-kanban .col:nth-child(2) i:first-child { background: var(--accent); }
-.mini-kanban .col:nth-child(3) i { opacity: .5; }
+.mini-pao { width: 84%; display: grid; grid-template-columns: 1.6fr repeat(4, minmax(0, 1fr)); gap: 7px; }
+.mini-pao i { display: block; height: 20px; border-radius: 5px; background: var(--surface); }
+.mini-pao i.l { background: var(--line); height: 8px; align-self: center; border-radius: 4px; }
+.mini-pao i.h { background: none; height: 8px; align-self: center; font: 500 10px/8px var(--font-mono); color: var(--faint); font-style: normal; text-align: center; }
+.mini-pao i.p { background: none; border: 1px dashed var(--faint); }
+.mini-pao i.d { background: var(--fg); opacity: .85; }
+.mini-pao i.r { background: var(--accent); }
 .hero-art {
   position: relative; width: 100%; max-width: 100%; aspect-ratio: 16 / 10;
   -webkit-mask-image: radial-gradient(ellipse 72% 72% at 55% 50%, #000 48%, transparent 100%);
@@ -272,6 +273,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .job .org { font: 500 1.4rem/1.15 var(--font-display); color: var(--accent); }
 .job .role { font-weight: 500; }
 .job .what { color: var(--muted); font-size: 16px; margin-top: .45rem; max-width: 56ch; }
+.job .what strong { color: var(--fg); font-weight: 500; }
 .job .when { color: var(--faint); font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 
 /* Contact */
@@ -333,6 +335,163 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .rise.d1 { animation-delay: .08s; } .rise.d2 { animation-delay: .16s; } .rise.d3 { animation-delay: .24s; } .rise.d4 { animation-delay: .32s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
+/* Routes (titres de section façon API) */
+.route { font: 500 13px/1 var(--font-mono); color: var(--faint); margin: 0 0 .9rem; letter-spacing: .02em; }
+.route .verb { color: var(--accent); margin-right: .6em; }
+.now { margin-top: .7rem; color: var(--muted); font-size: 15px; }
+.now strong { color: var(--fg); font-weight: 500; }
+.pulse { display: inline-block; vertical-align: 1px; margin-right: .55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-out infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent); } 70%, 100% { box-shadow: 0 0 0 9px transparent; } }
+
+/* Bouton et palette de commandes */
+.kbd-btn {
+  display: inline-flex; align-items: center; gap: .5rem; height: 40px; padding: 0 .55rem 0 .8rem;
+  border: 1px solid var(--line); border-radius: var(--radius); background: transparent; color: var(--muted);
+  font: 500 14px var(--font-body); cursor: pointer; margin-right: .2rem;
+}
+.kbd-btn:hover { border-color: var(--faint); color: var(--fg); }
+.kbd-btn svg { width: 16px; height: 16px; }
+kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); }
+.cmdk {
+  width: min(36rem, calc(100vw - 32px)); max-height: min(30rem, 80vh); padding: 0; border: 1px solid var(--line);
+  border-radius: 18px; background: var(--bg); color: var(--fg); box-shadow: 0 30px 80px -20px #000;
+  margin: 12vh auto auto; overflow: hidden;
+}
+.cmdk[open] { display: flex; flex-direction: column; animation: pop .18s ease-out; }
+@keyframes pop { from { opacity: 0; transform: translateY(-6px) scale(.98); } to { opacity: 1; transform: none; } }
+.cmdk::backdrop { background: rgba(10, 9, 8, .55); backdrop-filter: blur(3px); }
+.cmdk-in { display: flex; align-items: center; gap: .7rem; padding: .95rem 1.1rem; border-bottom: 1px solid var(--line); }
+.cmdk-in svg { width: 18px; height: 18px; color: var(--faint); flex: none; }
+.cmdk-in input { flex: 1; min-width: 0; background: transparent; border: 0; color: var(--fg); font: 400 16px var(--font-body); outline: none; }
+.cmdk-in input::placeholder { color: var(--faint); }
+.cmdk-list { list-style: none; margin: 0; padding: .5rem; overflow-y: auto; }
+.cmdk-group { font: 500 11.5px var(--font-mono); color: var(--faint); padding: .7rem .7rem .35rem; text-transform: uppercase; letter-spacing: .06em; }
+.cmdk-item { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .65rem .75rem; border-radius: 10px; cursor: pointer; }
+.cmdk-item .h { font: 12px var(--font-mono); color: var(--faint); white-space: nowrap; }
+.cmdk-item[aria-selected="true"] { background: var(--surface); }
+.cmdk-item[aria-selected="true"] .h { color: var(--accent); }
+.cmdk-empty { padding: 1.2rem .8rem; color: var(--faint); }
+.cmdk-foot { display: flex; gap: 1rem; flex-wrap: wrap; padding: .6rem 1.1rem; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--faint); }
+.toast {
+  position: fixed; left: 50%; bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px);
+  background: var(--fg); color: var(--on-fg); padding: .7rem 1.1rem; border-radius: var(--radius); font-weight: 500; font-size: 15px;
+  opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 50; max-width: calc(100vw - 32px);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Étude de cas SISEP */
+.case-head { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 2.5rem 4rem; align-items: end; }
+.case-head h2 { font-size: clamp(2.1rem, 1.3rem + 3vw, 3.6rem); letter-spacing: -0.03em; line-height: 1; }
+.case-head .lede { margin-top: 1.2rem; max-width: 50ch; }
+.facts { display: grid; gap: .85rem; margin: 0; }
+.facts > div { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: 1rem; padding-bottom: .85rem; border-bottom: 1px solid var(--line); align-items: baseline; }
+.facts dt { color: var(--faint); font-size: 14px; }
+.facts dd { margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip { font: 500 12.5px var(--font-mono); padding: .25rem .6rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.case-block { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+.case-block > .route { margin-bottom: .6rem; }
+.case-block > h3 { margin-bottom: 1.4rem; }
+.case-block > h3 + p.lede { margin-top: -0.8rem; margin-bottom: 1.8rem; }
+.arch { display: grid; grid-template-columns: minmax(0, 1fr) 6rem minmax(0, 1fr) 6rem minmax(0, 1fr); align-items: stretch; }
+.node { border: 1px solid var(--line); border-radius: 16px; padding: 1.1rem 1.2rem; background: var(--surface); display: grid; gap: .35rem; align-content: start; }
+.node .repo { font: 500 13px var(--font-mono); color: var(--accent); }
+.node b { font: 500 1.2rem/1.2 var(--font-display); }
+.node .t { color: var(--muted); font-size: 14.5px; }
+.wire { display: grid; align-content: center; justify-items: center; gap: .45rem; padding-inline: .4rem; font: 11.5px var(--font-mono); color: var(--faint); text-align: center; }
+.wire::before {
+  content: ""; width: 100%; height: 2px;
+  background: repeating-linear-gradient(90deg, var(--accent) 0 6px, transparent 6px 12px) 0 0 / 12px 2px;
+  animation: flow .8s linear infinite;
+}
+@keyframes flow { to { background-position: 12px 0; } }
+.box { border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem 1.4rem; background: var(--bg); overflow-x: auto; font: 400 14.5px/1.95 var(--font-mono); color: var(--faint); }
+.box .row { display: block; white-space: pre; }
+.model { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
+.tree button { font: inherit; color: var(--fg); background: none; border: 0; padding: .1rem .4rem; margin: 0 -.15rem; border-radius: 6px; cursor: pointer; transition: background .15s, color .15s; }
+.tree button:hover { background: var(--surface); }
+.tree button[aria-pressed="true"] { background: var(--accent); color: var(--bg); }
+.tree .tag { color: var(--faint); }
+.detail { border-left: 2px solid var(--accent); padding: .2rem 0 .2rem 1.4rem; display: grid; gap: .7rem; }
+.detail .k { font: 500 13px var(--font-mono); color: var(--accent); }
+.detail h4 { font: 500 1.6rem/1.15 var(--font-display); letter-spacing: -0.015em; margin: 0; }
+.detail p { color: var(--muted); max-width: 46ch; }
+.detail.swap { animation: fadein .35s ease both; }
+.ftree .dir { color: var(--fg); }
+.ftree .hl { color: var(--accent); }
+.modules { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem 3rem; align-items: start; }
+.modules .side { display: grid; gap: 1.2rem; }
+.modules .side p { color: var(--muted); }
+.modules .side p strong { color: var(--fg); font-weight: 500; }
+.screens-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.screens-tabs button {
+  min-height: 42px; padding: .5rem 1.05rem; border-radius: var(--radius); border: 1px solid var(--line); background: transparent;
+  color: var(--muted); font: 500 15px var(--font-body); cursor: pointer;
+}
+.screens-tabs button:hover { color: var(--fg); border-color: var(--faint); }
+.screens-tabs button[aria-selected="true"] { background: var(--fg); border-color: var(--fg); color: var(--on-fg); }
+.browser { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--bg); }
+.browser-bar { display: flex; align-items: center; gap: .9rem; padding: .7rem 1rem; border-bottom: 1px solid var(--line); background: var(--surface); }
+.dots { display: flex; gap: 6px; flex: none; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.url { font: 12.5px var(--font-mono); color: var(--muted); background: var(--bg); border-radius: 8px; padding: .3rem .75rem; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.screen { padding: clamp(1rem, 2.5vw, 1.6rem); }
+.screen.swap { animation: fadein .35s ease both; }
+.caption { margin-top: .9rem; font-size: 14px; color: var(--faint); }
+.sk { display: block; height: 9px; border-radius: 5px; background: var(--line); }
+.mlbl { font: 500 11.5px var(--font-mono); color: var(--faint); text-transform: uppercase; letter-spacing: .05em; }
+.scr-title { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+.scr-title b { font: 500 1.15rem var(--font-display); }
+.pill { font: 500 12px var(--font-mono); padding: .25rem .6rem; border-radius: var(--radius); border: 1px solid var(--line); color: var(--muted); }
+.pill.acc { border-color: var(--accent); color: var(--accent); }
+.scr-tabs { display: flex; gap: 1.3rem; border-bottom: 1px solid var(--line); margin-bottom: 1.2rem; overflow-x: auto; font-size: 14px; color: var(--faint); }
+.scr-tabs span { padding-bottom: .7rem; white-space: nowrap; }
+.scr-tabs span.on { color: var(--fg); box-shadow: inset 0 -2px 0 var(--accent); }
+.fiche { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.4rem; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.1rem 1.4rem; }
+.fld { display: grid; gap: .5rem; }
+.fld.wide { grid-column: 1 / -1; }
+.fld .v { font-size: 15px; }
+.tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+.tags i { display: block; width: 4.2rem; height: 22px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); }
+.panel { border: 1px solid var(--line); border-radius: 14px; padding: 1rem; display: grid; gap: .8rem; align-content: start; }
+.stack-bar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; }
+.stack-bar span:first-child { background: var(--fg); } .stack-bar span:last-child { background: var(--accent); }
+.legend { display: flex; gap: .4rem 1rem; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+.duo { display: grid; gap: .45rem; }
+.duo .track { height: 8px; border-radius: 4px; background: var(--surface); overflow: hidden; }
+.duo .track span { display: block; height: 100%; border-radius: 4px; }
+.pao { display: grid; grid-template-columns: minmax(7rem, 2fr) repeat(4, minmax(2.2rem, 1fr)) minmax(4.5rem, 1fr); gap: 8px 8px; align-items: center; min-width: 30rem; }
+.pao .q { height: 26px; border-radius: 6px; }
+.q.plan { border: 1px dashed var(--faint); } .q.done { background: var(--fg); opacity: .85; } .q.late { background: var(--accent); } .q.none { background: var(--surface); }
+.pao .ech { font: 12px var(--font-mono); color: var(--muted); text-align: right; }
+.pao .ech.late { color: var(--accent); }
+.scroll-x { overflow-x: auto; }
+.dash { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .8rem; margin-bottom: 1rem; }
+.kpi { border: 1px solid var(--line); border-radius: 12px; padding: .85rem; display: grid; gap: .7rem; }
+.dash-main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 1rem; }
+.map { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 4px; }
+.map i { aspect-ratio: 1; border-radius: 3px; background: var(--accent); }
+.map i.o { background: transparent; }
+.gaps { display: grid; gap: .9rem; align-content: start; }
+
+@media (max-width: 860px) {
+  .case-head, .model, .modules, .fiche, .dash-main { grid-template-columns: minmax(0, 1fr); }
+  .arch { grid-template-columns: minmax(0, 1fr); }
+  .wire { padding-block: .4rem; grid-template-columns: auto auto; justify-content: start; padding-left: 1.4rem; }
+  .wire::before { width: 2px; height: 28px; background: repeating-linear-gradient(180deg, var(--accent) 0 6px, transparent 6px 12px) 0 0 / 2px 12px; animation-name: flowv; }
+  .dash { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kbd-btn .lbl2 { display: none; }
+}
+@keyframes flowv { to { background-position: 0 12px; } }
+@media (max-width: 480px) {
+  .fields { grid-template-columns: minmax(0, 1fr); }
+  .kbd-btn kbd { display: none; }
+  .kbd-btn { padding: 0 .7rem; }
+}
+
 @media (max-width: 860px) {
   .site-header .wrap { grid-template-columns: auto 1fr; }
   .site-header nav { display: none; }
@@ -367,6 +526,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     <nav aria-label="Navigation principale">
       <ul class="nav">
         <li><a href="#projets">Projets</a></li>
+        <li><a href="#sisep">SISEP</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -379,6 +539,10 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       <a class="social" href="https://wa.me/224624959700" target="_blank" rel="noopener" aria-label="WhatsApp">
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>
       </a>
+      <button class="kbd-btn" type="button" id="cmdk-open" aria-label="Ouvrir la palette de commandes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="lbl2">Aller à</span><kbd id="kbd-hint">Ctrl K</kbd>
+      </button>
       <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Changer de thème">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg>
         <span class="lbl" id="theme-label">Sombre</span>
@@ -398,6 +562,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
             <span class="sub">je conçois des <span class="accent">plateformes métier</span> et des <span class="accent">applications mobiles</span>, de l'interface au serveur.</span>
           </h1>
           <p class="origin rise d1">Originaire de <span class="flag-gn" aria-hidden="true"></span><strong>Guinée</strong>, basé à Conakry.</p>
+          <p class="now rise d1"><span class="pulse" aria-hidden="true"></span>Consultant chez <strong>Afri-learning</strong>, en mission chez Inekto et Djogo Conseil.</p>
           <div class="hero-actions rise d2">
             <button class="btn btn-solid" type="button" id="mail-btn" data-copy="ibrahimibnmohamed9697@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copier mon e-mail</button>
             <a class="btn" href="https://wa.me/224624959700" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp</a>
@@ -418,7 +583,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
   <section id="projets">
     <div class="wrap">
       <div class="section-head">
-        <h2>Mes projets</h2>
+        <div><p class="route"><span class="verb">GET</span>/projets</p><h2>Mes projets</h2></div>
         <a class="pill-link" href="https://github.com/ibrahima036" target="_blank" rel="noopener">Tous les projets
           <span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
         </a>
@@ -437,18 +602,14 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
                 </div>
               </div>
             </article>
-            <!-- Carte 2 : Gestion de projet (Inekto) -->
+            <!-- Carte 2 : SISEP -->
             <article class="p-card" data-pos="1">
-              <div class="p-card-top"><span class="p-mark">P</span>Gestion de projet</div>
+              <div class="p-card-top"><span class="p-mark">S</span>SISEP</div>
               <div class="p-card-body">
-                <div class="mini-kanban" aria-hidden="true">
-                  <div class="col"><i></i><i></i><i></i></div>
-                  <div class="col"><i></i><i></i></div>
-                  <div class="col"><i></i><i></i><i></i></div>
-                </div>
+                <div class="mini-pao" aria-hidden="true"><i class="h"></i><i class="h">T1</i><i class="h">T2</i><i class="h">T3</i><i class="h">T4</i><i class="l"></i><i class="d"></i><i class="d"></i><i class="p"></i><i class="r"></i><i class="l"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="p"></i><i class="l"></i><i class="d"></i><i class="r"></i><i class="p"></i><i class="p"></i><i class="l"></i><i class="d"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="l"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class=""></i></div>
               </div>
             </article>
-            <!-- Carte 3 : Gestion des cartes (Inekto) -->
+            <!-- Carte 3 : Gestion des cartes -->
             <article class="p-card" data-pos="2">
               <div class="p-card-top"><span class="p-mark">C</span>Gestion des cartes</div>
               <div class="p-card-body">
@@ -474,9 +635,165 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     </div>
   </section>
 
+
+  <!-- ============ ÉTUDE DE CAS : SISEP ============ -->
+  <section id="sisep" class="case">
+    <div class="wrap">
+      <div class="case-head">
+        <div>
+          <p class="route"><span class="verb">GET</span>/projets/sisep</p>
+          <h2><span class="accent">SISEP</span>, le suivi des projets d'infrastructure publique en Guinée.</h2>
+          <p class="lede">Pour le ministère des Travaux publics. Chaque projet est suivi de son financement jusqu'à l'avancement du chantier, et chaque modification laisse une trace.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Client</dt><dd>Ministère des Travaux publics</dd></div>
+          <div><dt>Rôle</dt><dd>Consultant développeur</dd></div>
+          <div><dt>Dépôts</dt><dd class="chips"><span class="chip">sisep-backend</span><span class="chip">sisep-frontend</span></dd></div>
+          <div><dt>Stack</dt><dd class="chips"><span class="chip">Laravel 13</span><span class="chip">PHP 8.5</span><span class="chip">React 19</span><span class="chip">Vite</span><span class="chip">TanStack</span><span class="chip">PostgreSQL 18</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="case-block">
+        <p class="route">// architecture</p>
+        <h3>Deux dépôts, une API</h3>
+        <p class="lede">L'interface est une application React autonome. Elle ne parle qu'à l'API Laravel, seule à toucher la base.</p>
+        <div class="arch">
+          <div class="node"><span class="repo">sisep-frontend</span><b>Application React</b><span class="t">React 19, Vite, TanStack. Fiches projet, PAO, tableau de bord.</span></div>
+          <div class="wire">HTTP · JSON</div>
+          <div class="node"><span class="repo">sisep-backend</span><b>API Laravel</b><span class="t">Laravel 13 sur PHP 8.5. Neuf modules, Actions et Services, audit de chaque écriture.</span></div>
+          <div class="wire">SQL</div>
+          <div class="node"><span class="repo">production</span><b>PostgreSQL 18</b><span class="t">Projets, financements, décaissements et historique des modifications.</span></div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <p class="route">// modèle métier</p>
+        <h3>Du projet à l'activité</h3>
+        <p class="lede">Cliquez sur un élément du modèle pour voir ce qu'il représente.</p>
+        <div class="model">
+          <div class="box tree" id="tree" aria-label="Modèle métier de SISEP">
+            <span class="row"><button type="button" data-node="projet" aria-pressed="true">Projet</button> → <button type="button" data-node="composante" aria-pressed="false">Composante</button> → <button type="button" data-node="activite" aria-pressed="false">Activité</button></span>
+            <span class="row">   ├── <button type="button" data-node="financements" aria-pressed="false">Financements</button> <span class="tag">BND · FINEX</span></span>
+            <span class="row">   ├── <button type="button" data-node="decaissements" aria-pressed="false">Décaissements</button></span>
+            <span class="row">   ├── <button type="button" data-node="pieces" aria-pressed="false">Contrats, Prérequis, Documents, Commentaires</button></span>
+            <span class="row">   └── <button type="button" data-node="rattachement" aria-pressed="false">Pilier Simandou 2040, préfectures, code SIGPIP</button></span>
+          </div>
+          <div class="detail" id="detail" aria-live="polite">
+            <span class="k" id="detail-k">Projet</span>
+            <h4 id="detail-h"></h4>
+            <p id="detail-p"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <p class="route">// app/Modules</p>
+        <h3>Neuf modules, la même règle partout</h3>
+        <div class="modules">
+          <div class="box ftree" aria-label="Modules du backend">
+            <span class="row dir">app/Modules/</span>
+            <span class="row">├── <span class="dir">Projet/</span>      projets, composantes, activités</span>
+            <span class="row">├── <span class="dir">Financial/</span>   financements, décaissements</span>
+            <span class="row">├── <span class="dir">Pao/</span>         plan annuel d'opérations</span>
+            <span class="row">├── <span class="dir">Dashboard/</span>   portefeuille consolidé</span>
+            <span class="row">├── <span class="dir">Document/</span>    documents du projet</span>
+            <span class="row">├── <span class="dir">Rapport/</span>     rapports</span>
+            <span class="row">├── <span class="dir">Comment/</span>     commentaires</span>
+            <span class="row">├── <span class="hl">Audit/</span>       historique des modifications</span>
+            <span class="row">└── <span class="dir">User/</span>        utilisateurs</span>
+          </div>
+          <div class="side">
+            <p>Chaque module suit le même découpage : les <strong>Actions</strong> portent les cas d'usage, les <strong>Services</strong> la logique partagée.</p>
+            <div class="box ftree" aria-label="Structure d'un module">
+              <span class="row dir">Financial/</span>
+              <span class="row">├── <span class="dir">Actions/</span>    un cas d'usage par classe</span>
+              <span class="row">└── <span class="dir">Services/</span>   la logique partagée</span>
+            </div>
+            <p>Tout est <strong>auditable</strong> : on sait qui a modifié un financement, un décaissement ou une échéance, et quand. C'est ce que montre l'onglet historique de la fiche projet.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <p class="route">// écrans</p>
+        <h3>Trois écrans pour piloter le portefeuille</h3>
+        <div class="screens-tabs" role="tablist" aria-label="Écrans de SISEP">
+          <button type="button" role="tab" id="tab-fiche" aria-controls="scr-fiche" aria-selected="true">Fiche projet</button>
+          <button type="button" role="tab" id="tab-pao" aria-controls="scr-pao" aria-selected="false" tabindex="-1">Suivi du PAO</button>
+          <button type="button" role="tab" id="tab-dash" aria-controls="scr-dash" aria-selected="false" tabindex="-1">Tableau de bord</button>
+        </div>
+        <div class="browser">
+          <div class="browser-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="url" id="scr-url">sisep / projets / fiche</span></div>
+
+          <div class="screen" role="tabpanel" id="scr-fiche" aria-labelledby="tab-fiche">
+            <div class="scr-title"><b>Fiche projet</b><span class="pill acc">6 onglets</span></div>
+            <div class="scr-tabs" aria-hidden="true"><span class="on">Identification</span><span>Planification</span><span>Avancement</span><span>Financement</span><span>Documents</span><span>Historique</span></div>
+            <div class="fiche" aria-hidden="true">
+              <div class="fields">
+                <div class="fld wide"><span class="mlbl">Intitulé du projet</span><i class="sk" style="width:78%"></i></div>
+                <div class="fld"><span class="mlbl">Code SIGPIP</span><i class="sk" style="width:55%"></i></div>
+                <div class="fld"><span class="mlbl">Pilier Simandou 2040</span><i class="sk" style="width:70%"></i></div>
+                <div class="fld"><span class="mlbl">Ministère</span><span class="v">Travaux publics</span></div>
+                <div class="fld"><span class="mlbl">Composantes</span><i class="sk" style="width:35%"></i></div>
+                <div class="fld wide"><span class="mlbl">Préfectures d'intervention</span><span class="tags"><i></i><i></i><i></i></span></div>
+              </div>
+              <div class="panel">
+                <span class="mlbl">Financement</span>
+                <div class="stack-bar"><span style="width:38%"></span><span style="width:62%"></span></div>
+                <div class="legend"><span><i style="background:var(--fg)"></i>BND (interne)</span><span><i style="background:var(--accent)"></i>FINEX (par bailleur)</span></div>
+                <span class="mlbl" style="margin-top:.4rem">Avancement</span>
+                <div class="duo"><span class="legend">Physique</span><div class="track"><span style="width:64%;background:var(--fg)"></span></div></div>
+                <div class="duo"><span class="legend">Financier</span><div class="track"><span style="width:41%;background:var(--accent)"></span></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen" role="tabpanel" id="scr-pao" aria-labelledby="tab-pao" hidden>
+            <div class="scr-title"><b>Plan annuel d'opérations</b><span class="pill">Exercice 2026</span></div>
+            <div class="scroll-x" aria-hidden="true">
+              <div class="pao">
+                <span class="mlbl">Activité</span><span class="mlbl">T1</span><span class="mlbl">T2</span><span class="mlbl">T3</span><span class="mlbl">T4</span><span class="mlbl" style="text-align:right">Échéance</span>
+                <i class="sk" style="width:85%"></i><i class="q done"></i><i class="q done"></i><i class="q plan"></i><i class="q none"></i><span class="ech">T3</span>
+                <i class="sk" style="width:65%"></i><i class="q done"></i><i class="q late"></i><i class="q plan"></i><i class="q plan"></i><span class="ech late">en retard</span>
+                <i class="sk" style="width:75%"></i><i class="q none"></i><i class="q done"></i><i class="q done"></i><i class="q plan"></i><span class="ech">T4</span>
+                <i class="sk" style="width:55%"></i><i class="q none"></i><i class="q plan"></i><i class="q plan"></i><i class="q none"></i><span class="ech">T3</span>
+                <i class="sk" style="width:70%"></i><i class="q late"></i><i class="q plan"></i><i class="q none"></i><i class="q none"></i><span class="ech late">en retard</span>
+              </div>
+            </div>
+            <div class="legend" style="margin-top:1.1rem"><span><i style="border:1px dashed var(--faint)"></i>Planifié</span><span><i style="background:var(--fg)"></i>Réalisé</span><span><i style="background:var(--accent)"></i>En retard</span></div>
+          </div>
+
+          <div class="screen" role="tabpanel" id="scr-dash" aria-labelledby="tab-dash" hidden>
+            <div class="scr-title"><b>Portefeuille consolidé</b><span class="pill">Tous les projets</span></div>
+            <div aria-hidden="true">
+              <div class="dash">
+                <div class="kpi"><span class="mlbl">Projets</span><i class="sk" style="width:40%;height:16px"></i></div>
+                <div class="kpi"><span class="mlbl">Financements</span><i class="sk" style="width:65%;height:16px"></i></div>
+                <div class="kpi"><span class="mlbl">Décaissé</span><i class="sk" style="width:55%;height:16px"></i></div>
+                <div class="kpi"><span class="mlbl">Retards PAO</span><i class="sk" style="width:30%;height:16px;background:var(--accent)"></i></div>
+              </div>
+              <div class="dash-main">
+                <div class="panel"><span class="mlbl">Carte des préfectures</span><div class="map"><i class="o"></i><i class="o"></i><i style="opacity:0.45"></i><i style="opacity:0.3"></i><i style="opacity:0.6"></i><i style="opacity:1"></i><i style="opacity:0.18"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.45"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.3"></i><i style="opacity:0.18"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:0.18"></i><i style="opacity:0.6"></i><i style="opacity:0.6"></i><i style="opacity:0.18"></i><i style="opacity:0.3"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.6"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.3"></i><i class="o"></i><i class="o"></i><i style="opacity:1"></i><i style="opacity:1"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.8"></i><i style="opacity:0.6"></i><i style="opacity:0.18"></i><i style="opacity:0.3"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.3"></i><i style="opacity:0.45"></i><i class="o"></i><i class="o"></i><i style="opacity:0.6"></i><i style="opacity:0.3"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.45"></i><i style="opacity:0.8"></i><i style="opacity:1"></i><i style="opacity:0.3"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.8"></i><i style="opacity:1"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:0.3"></i><i style="opacity:0.45"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:1"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i style="opacity:0.3"></i><i style="opacity:0.6"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:1"></i><i style="opacity:0.8"></i><i style="opacity:0.6"></i><i style="opacity:0.45"></i><i style="opacity:0.6"></i><i style="opacity:0.8"></i><i style="opacity:0.6"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:0.45"></i><i style="opacity:0.45"></i><i style="opacity:0.3"></i><i style="opacity:0.3"></i><i style="opacity:1"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i style="opacity:0.3"></i><i style="opacity:0.18"></i><i style="opacity:0.8"></i><i class="o"></i><i class="o"></i></div></div>
+                <div class="panel gaps">
+                  <span class="mlbl">Écarts physique / financier</span>
+                  <div class="duo"><i class="sk" style="width:45%"></i><div class="track"><span style="width:72%;background:var(--fg)"></span></div><div class="track"><span style="width:48%;background:var(--accent)"></span></div></div>
+                  <div class="duo"><i class="sk" style="width:60%"></i><div class="track"><span style="width:35%;background:var(--fg)"></span></div><div class="track"><span style="width:58%;background:var(--accent)"></span></div></div>
+                  <div class="duo"><i class="sk" style="width:38%"></i><div class="track"><span style="width:88%;background:var(--fg)"></span></div><div class="track"><span style="width:80%;background:var(--accent)"></span></div></div>
+                  <div class="legend"><span><i style="background:var(--fg)"></i>Avancement physique</span><span><i style="background:var(--accent)"></i>Avancement financier</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="caption" id="scr-caption">Fiche projet : identification, planification, avancement, financement, documents et historique. Maquettes simplifiées, sans données réelles.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ SERVICES ============ -->
   <section id="services">
     <div class="wrap">
+      <p class="route"><span class="verb">GET</span>/services</p>
       <h2>Ce que je peux faire pour vous</h2>
       <div class="services">
         <div class="svc-aside">
@@ -526,28 +843,30 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
         </ol>
       </div>
 
-      <div class="sub-block">
+      <div class="sub-block" id="outils">
+        <p class="route"><span class="verb">GET</span>/outils</p>
         <h2>Mes outils</h2>
         <div class="rows">
           <div class="tool-row"><span class="k">Langages</span>
             <ul><li><span class="ab">ts</span>TypeScript</li><li><span class="ab">js</span>JavaScript</li><li><span class="ab">java</span>Java</li><li><span class="ab">php</span>PHP</li><li><span class="ab">sql</span>SQL</li><li><span class="ab">py</span>Python</li></ul></div>
           <div class="tool-row"><span class="k">Web</span>
-            <ul><li><span class="ab">re</span>React</li><li><span class="ab">tq</span>TanStack Query et Router</li><li><span class="ab">tw</span>Tailwind CSS</li><li><span class="ab">ui</span>shadcn/ui</li><li><span class="ab">htm</span>HTML et CSS</li></ul></div>
+            <ul><li><span class="ab">re</span>React</li><li><span class="ab">vi</span>Vite</li><li><span class="ab">tq</span>TanStack Query et Router</li><li><span class="ab">tw</span>Tailwind CSS</li><li><span class="ab">ui</span>shadcn/ui</li><li><span class="ab">htm</span>HTML et CSS</li></ul></div>
           <div class="tool-row"><span class="k">Mobile</span>
             <ul><li><span class="ab">rn</span>React Native</li><li><span class="ab">ex</span>Expo</li><li><span class="ab">wm</span>WatermelonDB</li></ul></div>
           <div class="tool-row"><span class="k">Serveur et données</span>
-            <ul><li><span class="ab">ns</span>NestJS</li><li><span class="ab">sb</span>Spring Boot</li><li><span class="ab">sy</span>Symfony</li><li><span class="ab">orm</span>TypeORM</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">rfs</span>RustFS</li><li><span class="ab">api</span>REST et Swagger</li></ul></div>
+            <ul><li><span class="ab">lv</span>Laravel</li><li><span class="ab">ns</span>NestJS</li><li><span class="ab">sb</span>Spring Boot</li><li><span class="ab">sy</span>Symfony</li><li><span class="ab">orm</span>TypeORM</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">rfs</span>RustFS</li><li><span class="ab">api</span>REST et Swagger</li></ul></div>
           <div class="tool-row"><span class="k">Outils</span>
             <ul><li><span class="ab">git</span>Git et GitHub</li><li><span class="ab">nb</span>Jupyter</li></ul></div>
         </div>
       </div>
 
       <div class="sub-block" id="parcours">
+        <p class="route"><span class="verb">GET</span>/parcours</p>
         <h2>Où je travaille aujourd'hui</h2>
         <div class="rows">
           <div class="job">
-            <span class="org">Inekto</span>
-            <div><p class="role">Consultant développeur</p><p class="what">Solutions de gestion de projet et de gestion des cartes professionnelles.</p></div>
+            <span class="org">Afri-learning</span>
+            <div><p class="role">Consultant développeur</p><p class="what">En mission chez <strong>Inekto</strong> et <strong>Djogo Conseil</strong> : SISEP pour le ministère des Travaux publics, solutions de gestion de projet et gestion des cartes professionnelles.</p></div>
             <span class="when">aujourd'hui</span>
           </div>
           <div class="job">
@@ -626,10 +945,21 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     <p class="bigname fit" aria-hidden="true"><span>Ibrahima Bah</span></p>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Ibrahima Bah</span>
-      <span>Conçu et codé à Conakry</span>
+      <span>Conçu et codé à Conakry · <kbd>Ctrl K</kbd> pour tout trouver · <a href="https://github.com/Ibrahima036/ibrahima036.github.io" target="_blank" rel="noopener">code source</a></span>
     </div>
   </div>
 </footer>
+
+<dialog class="cmdk" id="cmdk" aria-label="Palette de commandes">
+  <div class="cmdk-in">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="cmdk-q" type="text" placeholder="Chercher une section ou une action…" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="cmdk-list" aria-autocomplete="list">
+    <kbd>Échap</kbd>
+  </div>
+  <ul class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Résultats"></ul>
+  <div class="cmdk-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> naviguer</span><span><kbd>Entrée</kbd> valider</span></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -789,16 +1119,16 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
       links: [["Visiter le site", "https://staging.baara.africa/", false]]
     },
     {
-      mark: "P", name: "Gestion de projet", example: false,
-      desc: "Solutions de gestion de projet développées pour Inekto, où j'interviens comme consultant.",
-      meta: [["", "Chez Inekto."]],
-      stack: [],
-      links: []
+      mark: "S", name: "SISEP", example: false,
+      desc: "Suivi des projets d'infrastructure publique en Guinée pour le ministère des Travaux publics : financements, décaissements, plan annuel d'opérations et tableau de bord du portefeuille.",
+      meta: [["Client", "ministère des Travaux publics"], ["", "Mission de consultant."]],
+      stack: ["Laravel 13", "PHP 8.5", "React 19", "Vite", "TanStack", "PostgreSQL 18"],
+      links: [["Lire l'étude de cas", "#sisep", false]]
     },
     {
       mark: "C", name: "Gestion des cartes", example: false,
       desc: "Émission de cartes professionnelles recto verso au format 85,6 × 47 mm pour les intermédiaires d'assurance : numéro d'agrément, dates de validité, QR code de vérification et impression directe sur imprimante à cartes.",
-      meta: [["", "Chez Inekto. Code privé."]],
+      meta: [["", "Mission chez Inekto. Code privé."]],
       stack: ["HTML", "CSS (container queries)", "JavaScript", "PHP", "QR code", "Impression à cartes"],
       links: []
     }
@@ -859,6 +1189,149 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     }, { rootMargin: "-45% 0px -45% 0px" });
     document.querySelectorAll(".svc").forEach(function (s) { io.observe(s); });
   }
+
+
+  /* ---------- Toast ---------- */
+  var toastEl = document.getElementById("toast"), toastT = 0;
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.classList.add("show");
+    clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
+  }
+  function copyText(value, okMsg) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () { toast(okMsg); }, function () { toast(value); });
+    } else { toast(value); }
+  }
+  function openLink(url) {
+    var a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener";
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+  function goTo(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+  }
+
+  /* ---------- Palette de commandes ---------- */
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  var keyLabel = isMac ? "⌘ K" : "Ctrl K";
+  document.getElementById("kbd-hint").textContent = keyLabel;
+  document.querySelectorAll(".foot-bottom kbd").forEach(function (k) { k.textContent = keyLabel; });
+  var cmdk = document.getElementById("cmdk"), q = document.getElementById("cmdk-q"), list = document.getElementById("cmdk-list");
+  var commands = [
+    { g: "Aller à", t: "Accueil", h: "/", k: "haut debut", run: function () { goTo("accueil"); } },
+    { g: "Aller à", t: "Projets", h: "/projets", k: "baara cartes", run: function () { goTo("projets"); } },
+    { g: "Aller à", t: "Étude de cas SISEP", h: "/projets/sisep", k: "laravel react pao travaux publics", run: function () { goTo("sisep"); } },
+    { g: "Aller à", t: "Services", h: "/services", k: "offre creer reprendre automatiser", run: function () { goTo("services"); } },
+    { g: "Aller à", t: "Outils", h: "/outils", k: "stack technologies competences", run: function () { goTo("outils"); } },
+    { g: "Aller à", t: "Parcours", h: "/parcours", k: "experience afri-learning inekto djogo", run: function () { goTo("parcours"); } },
+    { g: "Aller à", t: "Contact", h: "/messages", k: "ecrire message email", run: function () { goTo("contact"); } },
+    { g: "Actions", t: "Copier mon e-mail", h: "e-mail", k: "mail adresse", run: function () { copyText("ibrahimibnmohamed9697@gmail.com", "E-mail copié"); } },
+    { g: "Actions", t: "Copier mon numéro", h: "+224", k: "telephone numero", run: function () { copyText("+224 624 95 97 00", "Numéro copié"); } },
+    { g: "Actions", t: "Écrire sur WhatsApp", h: "wa.me", k: "whatsapp message", run: function () { openLink("https://wa.me/224624959700"); } },
+    { g: "Actions", t: "Ouvrir mon GitHub", h: "github.com", k: "code depots", run: function () { openLink("https://github.com/ibrahima036"); } },
+    { g: "Actions", t: "Changer de thème", h: "clair / sombre", k: "theme dark light mode", run: function () { document.getElementById("theme-toggle").click(); } },
+    { g: "Actions", t: "Voir le code de ce site", h: "source", k: "github source portfolio", run: function () { openLink("https://github.com/Ibrahima036/ibrahima036.github.io"); } }
+  ];
+  var shown = [], sel = 0;
+  function norm(x) { return x.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+  function renderCmds() {
+    var term = norm(q.value.trim());
+    shown = commands.filter(function (c) { return !term || norm(c.t + " " + c.h + " " + c.k).indexOf(term) !== -1; });
+    if (sel >= shown.length) sel = Math.max(0, shown.length - 1);
+    var html = "", lastG = "";
+    shown.forEach(function (c, i) {
+      if (c.g !== lastG) { html += '<li class="cmdk-group" role="presentation">' + esc(c.g) + "</li>"; lastG = c.g; }
+      html += '<li class="cmdk-item" role="option" id="cmd-' + i + '" data-i="' + i + '" aria-selected="' + (i === sel) + '"><span>' + esc(c.t) + '</span><span class="h">' + esc(c.h) + "</span></li>";
+    });
+    list.innerHTML = html || '<li class="cmdk-empty">Aucun résultat. Essayez « contact » ou « SISEP ».</li>';
+    q.setAttribute("aria-activedescendant", shown.length ? "cmd-" + sel : "");
+    var cur = document.getElementById("cmd-" + sel);
+    if (cur) cur.scrollIntoView({ block: "nearest" });
+  }
+  function openCmdk() {
+    if (cmdk.open) return;
+    q.value = ""; sel = 0; renderCmds();
+    if (cmdk.showModal) cmdk.showModal(); else cmdk.setAttribute("open", "");
+    q.focus();
+  }
+  function closeCmdk() { if (cmdk.close) cmdk.close(); else cmdk.removeAttribute("open"); }
+  function runCmd(i) { var c = shown[i]; if (!c) return; closeCmdk(); setTimeout(c.run, 30); }
+  document.getElementById("cmdk-open").addEventListener("click", openCmdk);
+  q.addEventListener("input", function () { sel = 0; renderCmds(); });
+  q.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowDown") { sel = Math.min(shown.length - 1, sel + 1); renderCmds(); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { sel = Math.max(0, sel - 1); renderCmds(); e.preventDefault(); }
+    else if (e.key === "Enter") { runCmd(sel); e.preventDefault(); }
+  });
+  list.addEventListener("click", function (e) { var it = e.target.closest(".cmdk-item"); if (it) runCmd(+it.getAttribute("data-i")); });
+  list.addEventListener("mousemove", function (e) {
+    var it = e.target.closest(".cmdk-item"); if (!it) return;
+    var i = +it.getAttribute("data-i"); if (i !== sel) { sel = i; renderCmds(); }
+  });
+  cmdk.addEventListener("click", function (e) { if (e.target === cmdk) closeCmdk(); });
+  document.addEventListener("keydown", function (e) {
+    var typing = /INPUT|TEXTAREA|SELECT/.test((document.activeElement || {}).tagName || "");
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); cmdk.open ? closeCmdk() : openCmdk(); }
+    else if (e.key === "/" && !typing && !cmdk.open) { e.preventDefault(); openCmdk(); }
+  });
+
+  /* ---------- SISEP : modèle métier ---------- */
+  var model = {
+    projet: ["Projet", "Le point d'entrée", "Un projet d'infrastructure publique, découpé en composantes puis en activités. Sa fiche regroupe ses financements, ses décaissements, ses pièces et son rattachement au programme Simandou 2040."],
+    composante: ["Projet → Composante", "Le découpage du projet", "Un projet se divise en composantes. Les décaissements peuvent être rattachés directement à une composante."],
+    activite: ["Projet → Composante → Activité", "Le niveau le plus fin", "Les activités sont planifiées par exercice et par trimestre dans le plan annuel d'opérations (PAO), où l'on suit leurs retards et leurs échéances. Elles peuvent aussi porter leurs propres décaissements."],
+    financements: ["Projet ├── Financements", "D'où vient l'argent", "Chaque projet déclare ses financements : internes, sur le BND, ou externes (FINEX), ventilés par bailleur."],
+    decaissements: ["Projet ├── Décaissements", "Où va l'argent", "Les sommes versées, rattachées à une composante ou à une activité. Rapprochées de l'avancement physique, elles font apparaître les écarts sur le tableau de bord."],
+    pieces: ["Projet ├── Contrats, Prérequis, Documents, Commentaires", "Le dossier du projet", "Les contrats signés, les prérequis à lever avant d'avancer, les documents joints et le fil de commentaires de l'équipe."],
+    rattachement: ["Projet └── Pilier, préfectures, SIGPIP", "Le rattachement", "Le pilier du programme Simandou 2040 auquel le projet contribue, les préfectures où il intervient, et son code SIGPIP. C'est ce qui alimente la carte des préfectures du tableau de bord."]
+  };
+  var detail = document.getElementById("detail");
+  var treeBtns = Array.prototype.slice.call(document.querySelectorAll("#tree button"));
+  function showNode(key, animate) {
+    var m = model[key]; if (!m) return;
+    treeBtns.forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-node") === key ? "true" : "false"); });
+    document.getElementById("detail-k").textContent = m[0];
+    document.getElementById("detail-h").textContent = m[1];
+    document.getElementById("detail-p").textContent = m[2];
+    if (animate) { detail.classList.remove("swap"); void detail.offsetWidth; detail.classList.add("swap"); }
+  }
+  treeBtns.forEach(function (b) { b.addEventListener("click", function () { showNode(b.getAttribute("data-node"), true); }); });
+  showNode("projet", false);
+
+  /* ---------- SISEP : onglets des écrans ---------- */
+  var scrTabs = Array.prototype.slice.call(document.querySelectorAll('.screens-tabs [role="tab"]'));
+  var scrInfo = {
+    "scr-fiche": ["sisep / projets / fiche", "Fiche projet : identification, planification, avancement, financement, documents et historique."],
+    "scr-pao": ["sisep / pao / 2026", "Suivi du PAO : activités par exercice, trimestres planifiés, retards et échéances."],
+    "scr-dash": ["sisep / tableau-de-bord", "Tableau de bord : portefeuille consolidé, carte des préfectures et écarts entre avancement physique et financier."]
+  };
+  function selectTab(tab, focus) {
+    scrTabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute("aria-controls"));
+      panel.hidden = !on;
+      if (on) { panel.classList.remove("swap"); void panel.offsetWidth; panel.classList.add("swap"); }
+    });
+    var info = scrInfo[tab.getAttribute("aria-controls")];
+    document.getElementById("scr-url").textContent = info[0];
+    document.getElementById("scr-caption").textContent = info[1] + " Maquettes simplifiées, sans données réelles.";
+    if (focus) tab.focus();
+  }
+  scrTabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { selectTab(t, false); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { selectTab(scrTabs[(i + 1) % scrTabs.length], true); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { selectTab(scrTabs[(i - 1 + scrTabs.length) % scrTabs.length], true); e.preventDefault(); }
+    });
+  });
+
+  /* ---------- Pour les curieux qui ouvrent la console ---------- */
+  try {
+    console.log("%cVous lisez le code ? Moi aussi.", "font: 600 14px sans-serif; color: #ee8d5e");
+    console.log("Ce site est écrit à la main, sans framework. Écrivez-moi : ibrahimibnmohamed9697@gmail.com");
+  } catch (e) {}
 
   /* ---------- Formulaire de contact ---------- */
   var form = document.getElementById("req");
