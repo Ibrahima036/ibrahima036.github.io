@@ -437,9 +437,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
                 </div>
               </div>
             </article>
-            <!-- Carte 2 : Inekto -->
+            <!-- Carte 2 : Gestion de projet (Inekto) -->
             <article class="p-card" data-pos="1">
-              <div class="p-card-top"><span class="p-mark">I</span>Inekto</div>
+              <div class="p-card-top"><span class="p-mark">P</span>Gestion de projet</div>
               <div class="p-card-body">
                 <div class="mini-kanban" aria-hidden="true">
                   <div class="col"><i></i><i></i><i></i></div>
@@ -448,7 +448,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
                 </div>
               </div>
             </article>
-            <!-- Carte 3 : Gestion des cartes -->
+            <!-- Carte 3 : Gestion des cartes (Inekto) -->
             <article class="p-card" data-pos="2">
               <div class="p-card-top"><span class="p-mark">C</span>Gestion des cartes</div>
               <div class="p-card-body">
@@ -534,9 +534,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
           <div class="tool-row"><span class="k">Web</span>
             <ul><li><span class="ab">re</span>React</li><li><span class="ab">tq</span>TanStack Query et Router</li><li><span class="ab">tw</span>Tailwind CSS</li><li><span class="ab">ui</span>shadcn/ui</li><li><span class="ab">htm</span>HTML et CSS</li></ul></div>
           <div class="tool-row"><span class="k">Mobile</span>
-            <ul><li><span class="ab">rn</span>React Native</li><li><span class="ab">ex</span>Expo</li></ul></div>
+            <ul><li><span class="ab">rn</span>React Native</li><li><span class="ab">ex</span>Expo</li><li><span class="ab">wm</span>WatermelonDB</li></ul></div>
           <div class="tool-row"><span class="k">Serveur et données</span>
-            <ul><li><span class="ab">ns</span>NestJS</li><li><span class="ab">sb</span>Spring Boot</li><li><span class="ab">sy</span>Symfony</li><li><span class="ab">orm</span>TypeORM</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">api</span>REST et Swagger</li></ul></div>
+            <ul><li><span class="ab">ns</span>NestJS</li><li><span class="ab">sb</span>Spring Boot</li><li><span class="ab">sy</span>Symfony</li><li><span class="ab">orm</span>TypeORM</li><li><span class="ab">pg</span>PostgreSQL</li><li><span class="ab">rfs</span>RustFS</li><li><span class="ab">api</span>REST et Swagger</li></ul></div>
           <div class="tool-row"><span class="k">Outils</span>
             <ul><li><span class="ab">git</span>Git et GitHub</li><li><span class="ab">nb</span>Jupyter</li></ul></div>
         </div>
@@ -546,8 +546,13 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
         <h2>Où je travaille aujourd'hui</h2>
         <div class="rows">
           <div class="job">
-            <span class="org">Freelance</span>
-            <div><p class="role">Développeur web et mobile</p><p class="what">Plateformes web, applications mobiles et outils de gestion pour des entreprises en Guinée, dont Baara et Inekto.</p></div>
+            <span class="org">Inekto</span>
+            <div><p class="role">Consultant développeur</p><p class="what">Solutions de gestion de projet et de gestion des cartes professionnelles.</p></div>
+            <span class="when">aujourd'hui</span>
+          </div>
+          <div class="job">
+            <span class="org">Baara</span>
+            <div><p class="role">Développeur</p><p class="what">Plateforme web et application mobile pour le BTP : API NestJS, interface React, base PostgreSQL, synchronisation hors connexion avec WatermelonDB et stockage des fichiers sur RustFS.</p></div>
             <span class="when">aujourd'hui</span>
           </div>
         </div>
@@ -766,21 +771,21 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     {
       mark: "B", name: "Baara", example: false,
       desc: "Plateforme web et mobile pour les entreprises du BTP. Le bureau suit commandes, livraisons, stocks et paiements ; le chef de chantier pointe ses équipes sur son téléphone, même quand le réseau est faible.",
-      meta: [["Statut", "programme pilote"], ["", "Conçu à Conakry."]],
-      stack: ["Plateforme web pour le bureau", "Application mobile terrain", "Saisie hors connexion", "Tableaux de bord financiers", "Bons de commande PDF", "Paie en francs guinéens"],
+      meta: [["Statut", "programme pilote"], ["", "J'en suis le développeur."]],
+      stack: ["NestJS", "React", "WatermelonDB", "RustFS", "PostgreSQL"],
       links: [["Visiter le site", "https://staging.baara.africa/", false]]
     },
     {
-      mark: "I", name: "Inekto", example: false,
-      desc: "Application de gestion de projet.",
-      meta: [],
+      mark: "P", name: "Gestion de projet", example: false,
+      desc: "Solutions de gestion de projet développées pour Inekto, où j'interviens comme consultant.",
+      meta: [["", "Chez Inekto."]],
       stack: [],
       links: []
     },
     {
       mark: "C", name: "Gestion des cartes", example: false,
       desc: "Émission de cartes professionnelles recto verso au format 85,6 × 47 mm pour les intermédiaires d'assurance : numéro d'agrément, dates de validité, QR code de vérification et impression directe sur imprimante à cartes.",
-      meta: [["", "Code privé."]],
+      meta: [["", "Chez Inekto. Code privé."]],
       stack: ["HTML", "CSS (container queries)", "JavaScript", "PHP", "QR code", "Impression à cartes"],
       links: []
     }
