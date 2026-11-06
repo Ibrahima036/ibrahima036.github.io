@@ -745,9 +745,22 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
     }
     // orbite en couleur d'accent
     ctx.globalAlpha = 1; ctx.strokeStyle = accent; ctx.lineWidth = 1.4;
-    ctx.save(); ctx.translate(cx, cy); ctx.rotate(-0.32);
-    ctx.beginPath(); ctx.ellipse(0, 0, R * 1.45, R * 0.36, 0, Math.PI * 0.98, Math.PI * 2.02); ctx.stroke();
-    ctx.beginPath(); ctx.fillStyle = accent; ctx.arc(R * 1.45 * Math.cos(Math.PI * 1.86), R * 0.36 * Math.sin(Math.PI * 1.86), 4.5, 0, Math.PI * 2); ctx.fill();
+    var ox = R * 1.45, oy = R * 0.36;
+    var oc = hasPhoto ? R * 0.5 : 0;
+    ctx.save(); ctx.translate(cx, cy + oc); ctx.rotate(hasPhoto ? -0.24 : -0.32); ctx.fillStyle = accent;
+    if (hasPhoto) {
+      // avec la photo : l'orbite passe derrière en haut et devant en bas, comme autour d'une planète
+      ctx.save();
+      ctx.beginPath(); ctx.rect(-W * 2, -H * 2, W * 4, H * 4); ctx.arc(Math.sin(0.24) * oc, -Math.cos(0.24) * oc, R + 1, 0, Math.PI * 2);
+      ctx.clip("evenodd");
+      ctx.beginPath(); ctx.ellipse(0, 0, ox, oy, 0, Math.PI, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+      ctx.beginPath(); ctx.ellipse(0, 0, ox, oy, 0, 0, Math.PI); ctx.stroke();
+      ctx.beginPath(); ctx.arc(ox * Math.cos(Math.PI * 0.18), oy * Math.sin(Math.PI * 0.18), 4.5, 0, Math.PI * 2); ctx.fill();
+    } else {
+      ctx.beginPath(); ctx.ellipse(0, 0, ox, oy, 0, Math.PI * 0.98, Math.PI * 2.02); ctx.stroke();
+      ctx.beginPath(); ctx.arc(ox * Math.cos(Math.PI * 1.86), oy * Math.sin(Math.PI * 1.86), 4.5, 0, Math.PI * 2); ctx.fill();
+    }
     ctx.restore();
   }
   drawArt();
