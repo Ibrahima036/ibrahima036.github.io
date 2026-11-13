@@ -10,7 +10,7 @@
   PORTFOLIO D'IBRAHIMA BAH
   Tout le texte est en français, directement dans ce fichier.
     • projets : tableau `projects` dans le script en bas du fichier + cartes .p-card de la section #projets
-    • outils et parcours : sections #services et #parcours
+    • outils et clients : sections #outils et #clients
   Fichiers optionnels, à déposer dans assets/ :
     • assets/photo.jpg → remplace le visuel génératif du haut de page (affichée en noir et blanc)
 -->
@@ -263,7 +263,7 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .svc ul.deliver { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .svc ul.deliver li { padding-block: .8rem; border-bottom: 1px solid var(--line); font-size: 16px; }
 
-/* Outils & parcours */
+/* Outils & clients */
 .rows { border-top: 1px solid var(--line); }
 .tool-row { display: grid; grid-template-columns: 14rem minmax(0, 1fr); gap: 1rem 2rem; padding-block: 1.3rem; border-bottom: 1px solid var(--line); align-items: baseline; }
 .tool-row .k { color: var(--muted); font-size: 15px; }
@@ -272,13 +272,16 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .tool-row li .ab { font: 500 11px var(--font-mono); color: var(--faint); min-width: 2.2em; }
 .sub-block { margin-top: clamp(4rem, 8vw, 6rem); }
 .sub-block h2 { margin-bottom: 2rem; }
-.job { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: .5rem 2.5rem; padding-block: 1.8rem; border-bottom: 1px solid var(--line); }
-.job .org { font: 500 1.4rem/1.15 var(--font-display); color: var(--accent); text-decoration: none; align-self: start; }
-a.org:hover { text-decoration: underline; text-underline-offset: 4px; }
-.job .role { font-weight: 500; }
-.job .what { color: var(--muted); font-size: 16px; margin-top: .45rem; max-width: 56ch; }
-.job .what strong { color: var(--fg); font-weight: 500; }
-.job .when { color: var(--faint); font-size: 15px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.clients { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); counter-reset: cl; }
+.clients li { border-bottom: 1px solid var(--line); counter-increment: cl; }
+.clients .cl {
+  display: flex; align-items: baseline; gap: 1.2rem; padding-block: 1.1rem; text-decoration: none;
+  font: 500 clamp(1.7rem, 1.1rem + 2.6vw, 3rem)/1.1 var(--font-display); letter-spacing: -0.025em;
+  transition: color .25s, transform .25s;
+}
+.clients .cl::before { content: counter(cl, decimal-leading-zero); font: 400 13px var(--font-mono); color: var(--faint); letter-spacing: 0; min-width: 2ch; }
+.clients li:hover .cl { color: var(--accent); transform: translateX(6px); }
+.clients .go { margin-left: auto; font-size: .6em; color: var(--accent); }
 
 /* Contact */
 .contact p.lede { max-width: 52ch; }
@@ -401,8 +404,6 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
   .svc-tabs { display: none; }
   .svc-list { padding-block: 0; gap: 4rem; }
   .tool-row { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
-  .job { grid-template-columns: minmax(0, 1fr); }
-  .job .when { order: -1; }
 }
 @media (max-width: 480px) {
   .theme-toggle .lbl { display: none; }
@@ -495,15 +496,20 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
               <div class="p-card-top"><span class="p-mark">B</span>Baara<span class="p-url">baara.africa</span></div>
               <div class="p-card-body shot"><img src="assets/baara.jpg" alt="Page d'accueil de Baara" loading="lazy"></div>
             </article>
-            <!-- Carte 2 : SISEP -->
+            <!-- Carte 2 : Garage Hervé Vincent -->
             <article class="p-card" data-pos="1">
+              <div class="p-card-top"><span class="p-mark">G</span>Garage Hervé Vincent<span class="p-url">garage-hervevincent.com</span></div>
+              <div class="p-card-body shot"><img src="assets/garage.jpg" alt="Page d'accueil du Garage Hervé Vincent" loading="lazy"></div>
+            </article>
+            <!-- Carte 3 : SISEP -->
+            <article class="p-card" data-pos="2">
               <div class="p-card-top"><span class="p-mark">S</span>SISEP</div>
               <div class="p-card-body">
                 <div class="mini-pao" aria-hidden="true"><i class="h"></i><i class="h">T1</i><i class="h">T2</i><i class="h">T3</i><i class="h">T4</i><i class="l"></i><i class="d"></i><i class="d"></i><i class="p"></i><i class="r"></i><i class="l"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="p"></i><i class="l"></i><i class="d"></i><i class="r"></i><i class="p"></i><i class="p"></i><i class="l"></i><i class="d"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class="l"></i><i class="p"></i><i class="p"></i><i class="p"></i><i class=""></i></div>
               </div>
             </article>
-            <!-- Carte 3 : Gestion des cartes -->
-            <article class="p-card" data-pos="2">
+            <!-- Carte 4 : Gestion des cartes -->
+            <article class="p-card" data-pos="hidden">
               <div class="p-card-top"><span class="p-mark">C</span>Gestion des cartes</div>
               <div class="p-card-body">
                 <div class="mini-card" aria-hidden="true"><div class="ph"></div><div class="ln"><i></i><i></i><i></i><i></i></div><div class="qr"></div></div>
@@ -599,21 +605,16 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
         </div>
       </div>
 
-      <div class="sub-block" id="parcours">
-        <p class="route"><span class="verb">GET</span>/parcours</p>
-        <h2>Où je travaille aujourd'hui</h2>
-        <div class="rows">
-          <div class="job">
-            <span class="org">Afri-learning</span>
-            <div><p class="role">Consultant développeur</p><p class="what">En mission chez <strong>Inekto</strong> et <strong>Djogo Conseil</strong>.</p></div>
-            <span class="when">aujourd'hui</span>
-          </div>
-          <div class="job">
-            <a class="org" href="https://baara.africa/" target="_blank" rel="noopener">Baara</a>
-            <div><p class="role">Développeur</p><p class="what">Plateforme web et application mobile pour le BTP : API NestJS, interface React, base PostgreSQL, synchronisation hors connexion avec WatermelonDB et stockage des fichiers sur RustFS.</p></div>
-            <span class="when">aujourd'hui</span>
-          </div>
-        </div>
+      <div class="sub-block" id="clients">
+        <p class="route"><span class="verb">GET</span>/clients</p>
+        <h2>Ils m'ont fait confiance</h2>
+        <ul class="clients">
+          <li><span class="cl">Afri-learning</span></li>
+          <li><span class="cl">Djogo Conseil</span></li>
+          <li><span class="cl">Brainsense</span></li>
+          <li><span class="cl">Yatou Technologie</span></li>
+          <li><a class="cl" href="https://garage-hervevincent.com/" target="_blank" rel="noopener">Garage Hervé Vincent<span class="go" aria-hidden="true">↗</span></a></li>
+        </ul>
       </div>
     </div>
   </section>
@@ -858,6 +859,13 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
       links: [["Visiter Baara", "https://baara.africa/", false]]
     },
     {
+      mark: "G", name: "Garage Hervé Vincent", example: false,
+      desc: "Application de gestion d'un garage automobile à Conakry. Elle suit chaque véhicule de la prise de rendez-vous jusqu'à la facture : diagnostic, état des lieux à l'entrée, ordre de réparation, devis, paiement, sans oublier le stock de pièces.",
+      meta: [["Statut", "en ligne"], ["", "Projet client."]],
+      stack: ["Rendez-vous par créneaux", "Clients", "Déclaration de pannes", "Diagnostic et état des lieux", "Ordres de réparation", "Devis", "Factures et paiements", "Stock de pièces"],
+      links: [["Visiter le site", "https://garage-hervevincent.com/", false]]
+    },
+    {
       mark: "S", name: "SISEP", example: false,
       desc: "Plateforme de suivi des projets d'infrastructure publique.",
       meta: [["", "Mission de consultant."]],
@@ -958,10 +966,10 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
   var cmdk = document.getElementById("cmdk"), q = document.getElementById("cmdk-q"), list = document.getElementById("cmdk-list");
   var commands = [
     { g: "Aller à", t: "Accueil", h: "/", k: "haut debut", run: function () { goTo("accueil"); } },
-    { g: "Aller à", t: "Projets", h: "/projets", k: "baara cartes", run: function () { goTo("projets"); } },
+    { g: "Aller à", t: "Projets", h: "/projets", k: "baara garage sisep cartes", run: function () { goTo("projets"); } },
     { g: "Aller à", t: "Services", h: "/services", k: "offre creer reprendre automatiser", run: function () { goTo("services"); } },
     { g: "Aller à", t: "Outils", h: "/outils", k: "stack technologies competences", run: function () { goTo("outils"); } },
-    { g: "Aller à", t: "Parcours", h: "/parcours", k: "experience afri-learning inekto djogo", run: function () { goTo("parcours"); } },
+    { g: "Aller à", t: "Clients", h: "/clients", k: "parcours experience afri-learning djogo brainsense yatou garage", run: function () { goTo("clients"); } },
     { g: "Aller à", t: "Contact", h: "/messages", k: "ecrire message email", run: function () { goTo("contact"); } },
     { g: "Actions", t: "Copier mon e-mail", h: "e-mail", k: "mail adresse", run: function () { copyText("ibrahimibnmohamed9697@gmail.com", "E-mail copié"); } },
     { g: "Actions", t: "Copier mon numéro", h: "+224", k: "telephone numero", run: function () { copyText("+224 624 95 97 00", "Numéro copié"); } },
