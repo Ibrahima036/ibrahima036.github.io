@@ -346,7 +346,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .route { font: 500 13px/1 var(--font-mono); color: var(--faint); margin: 0 0 .9rem; letter-spacing: .02em; }
 .route .verb { color: var(--accent); margin-right: .6em; }
 .now { margin-top: .7rem; color: var(--muted); font-size: 15px; }
-.now strong { color: var(--fg); font-weight: 500; }
+.now strong, .now-link { color: var(--fg); font-weight: 500; }
+.now-link { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.now-link:hover { color: var(--accent); }
 .pulse { display: inline-block; vertical-align: 1px; margin-right: .55rem; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-out infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent); } 70%, 100% { box-shadow: 0 0 0 9px transparent; } }
 
@@ -461,7 +463,7 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
             <span class="sub">je conçois des <span class="accent">plateformes métier</span> et des <span class="accent">applications mobiles</span>, de l'interface au serveur.</span>
           </h1>
           <p class="origin rise d1">Originaire de <span class="flag-gn" aria-hidden="true"></span><strong>Guinée</strong>, basé à Conakry.</p>
-          <p class="now rise d1"><span class="pulse" aria-hidden="true"></span>Consultant chez <strong>Afri-learning</strong>, en mission chez Djogo Conseil.</p>
+          <p class="now rise d1"><span class="pulse" aria-hidden="true"></span>Consultant chez <a class="now-link" href="https://afri-learning.com/" target="_blank" rel="noopener">Afri-learning</a>, en mission chez Djogo Conseil.</p>
           <div class="hero-actions rise d2">
             <button class="btn btn-solid" type="button" id="mail-btn" data-copy="ibrahimibnmohamed9697@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>Copier mon e-mail</button>
             <a class="btn" href="https://wa.me/224624959700" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.98L2 22l5.16-1.5A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.2-1.15l-.3-.18-3.06.9.9-2.98-.2-.31a8.2 8.2 0 1 1 6.86 3.72Zm4.5-6.14c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.97-.14.16-.29.18-.53.06a6.7 6.7 0 0 1-3.32-2.9c-.25-.43.25-.4.71-1.33.08-.16.04-.3-.02-.43-.06-.12-.56-1.34-.76-1.83-.2-.48-.4-.41-.56-.42h-.47a.9.9 0 0 0-.66.31 2.76 2.76 0 0 0-.86 2.05c0 1.21.88 2.38 1 2.55.13.16 1.74 2.66 4.21 3.73 1.57.68 2.18.74 2.96.62.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></svg>WhatsApp</a>
@@ -609,7 +611,7 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
         <p class="route"><span class="verb">GET</span>/clients</p>
         <h2>Ils m'ont fait confiance</h2>
         <ul class="clients">
-          <li><span class="cl">Afri-learning</span></li>
+          <li><a class="cl" href="https://afri-learning.com/" target="_blank" rel="noopener">Afri-learning<span class="go" aria-hidden="true">↗</span></a></li>
           <li><span class="cl">Inekto</span></li>
           <li><span class="cl">Djogo Conseil</span></li>
           <li><span class="cl">Brainsense</span></li>
