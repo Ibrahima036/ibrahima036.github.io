@@ -196,6 +196,9 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .p-card[data-pos="hidden"] { opacity: 0; transform: translateY(28px) scale(.91); pointer-events: none; }
 .p-card-top { display: flex; align-items: center; gap: .55rem; padding: 1.1rem 1.4rem; font: 500 14px var(--font-display); }
 .p-card-body { flex: 1; display: grid; place-items: center; padding: 0 1.4rem 1.6rem; min-height: 0; }
+.p-card-body.shot { padding: 0 1.1rem 1.1rem; place-items: stretch; }
+.p-card-body.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 12px; border: 1px solid var(--line); }
+.p-url { margin-left: auto; font: 400 12px var(--font-mono); color: var(--faint); }
 .p-mark { width: 22px; height: 22px; border-radius: 6px; display: grid; place-items: center; font: 600 12px var(--font-mono); color: var(--bg); background: var(--accent); }
 .stage-nav { display: flex; gap: .9rem; }
 
@@ -270,7 +273,8 @@ section { padding-block: clamp(4rem, 3rem + 4vw, 7rem); }
 .sub-block { margin-top: clamp(4rem, 8vw, 6rem); }
 .sub-block h2 { margin-bottom: 2rem; }
 .job { display: grid; grid-template-columns: 11rem minmax(0, 1fr) auto; gap: .5rem 2.5rem; padding-block: 1.8rem; border-bottom: 1px solid var(--line); }
-.job .org { font: 500 1.4rem/1.15 var(--font-display); color: var(--accent); }
+.job .org { font: 500 1.4rem/1.15 var(--font-display); color: var(--accent); text-decoration: none; align-self: start; }
+a.org:hover { text-decoration: underline; text-underline-offset: 4px; }
 .job .role { font-weight: 500; }
 .job .what { color: var(--muted); font-size: 16px; margin-top: .45rem; max-width: 56ch; }
 .job .what strong { color: var(--fg); font-weight: 500; }
@@ -488,13 +492,8 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
           <div class="stage" id="stage" aria-roledescription="carrousel" aria-label="Projets">
             <!-- Carte 1 : Baara -->
             <article class="p-card" data-pos="0">
-              <div class="p-card-top"><span class="p-mark">B</span>Baara</div>
-              <div class="p-card-body">
-                <div class="mini-dash" aria-hidden="true">
-                  <div class="side"><i></i><i></i><i></i><i></i></div>
-                  <div class="main"><b style="height:38%"></b><b style="height:62%"></b><b style="height:48%"></b><b style="height:88%"></b><b style="height:56%"></b></div>
-                </div>
-              </div>
+              <div class="p-card-top"><span class="p-mark">B</span>Baara<span class="p-url">baara.africa</span></div>
+              <div class="p-card-body shot"><img src="assets/baara.jpg" alt="Page d'accueil de Baara" loading="lazy"></div>
             </article>
             <!-- Carte 2 : SISEP -->
             <article class="p-card" data-pos="1">
@@ -610,7 +609,7 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
             <span class="when">aujourd'hui</span>
           </div>
           <div class="job">
-            <span class="org">Baara</span>
+            <a class="org" href="https://baara.africa/" target="_blank" rel="noopener">Baara</a>
             <div><p class="role">Développeur</p><p class="what">Plateforme web et application mobile pour le BTP : API NestJS, interface React, base PostgreSQL, synchronisation hors connexion avec WatermelonDB et stockage des fichiers sur RustFS.</p></div>
             <span class="when">aujourd'hui</span>
           </div>
@@ -853,10 +852,10 @@ kbd { font: 500 11.5px var(--font-mono); padding: .2rem .45rem; border-radius: 6
   var projects = [
     {
       mark: "B", name: "Baara", example: false,
-      desc: "Plateforme web et mobile pour les entreprises du BTP. Le bureau suit commandes, livraisons, stocks et paiements ; le chef de chantier pointe ses équipes sur son téléphone, même quand le réseau est faible.",
-      meta: [["Statut", "programme pilote"], ["", "J'en suis le développeur."]],
+      desc: "Plateforme web et mobile conçue à Conakry pour les entreprises du BTP. Le bureau suit les commandes, les livraisons, le stock et les paiements de chaque chantier. Sur le terrain, le chef de chantier pointe ses équipes depuis son téléphone, même quand le réseau est faible, et la paie se calcule toute seule.",
+      meta: [["Statut", "en ligne, programme pilote"], ["", "J'en suis le développeur."]],
       stack: ["NestJS", "React", "WatermelonDB", "RustFS", "PostgreSQL"],
-      links: [["Visiter le site", "https://staging.baara.africa/", false]]
+      links: [["Visiter Baara", "https://baara.africa/", false]]
     },
     {
       mark: "S", name: "SISEP", example: false,
